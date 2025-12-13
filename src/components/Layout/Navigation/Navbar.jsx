@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaBars,
@@ -9,9 +9,11 @@ import {
   FaFile,
   FaEnvelope,
   FaCogs,
+  FaGithub,
+  FaLinkedin,
+  FaArrowRight,
 } from "react-icons/fa";
-import { motion } from "framer-motion";
-import ThemeSwitcher from "../Utilities/ThemeSwitcher";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -19,25 +21,25 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [hoveredItem, setHoveredItem] = useState(null);
+
+  // Navigation items configuration
+  const navItems = [
+    { id: "home", label: "Home", icon: FaHome },
+    { id: "about", label: "About", icon: FaUser },
+    { id: "projects", label: "Projects", icon: FaLaptopCode },
+    { id: "tech-stack", label: "Tech Stack", icon: FaCogs },
+    { id: "resume", label: "Resume", icon: FaFile },
+    { id: "contact", label: "Contact", icon: FaEnvelope },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
-      if (offset > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(offset > 50);
 
       // Determine active section based on scroll position
-      const sections = [
-        "home",
-        "about",
-        "projects",
-        "tech-stack",
-        "resume",
-        "contact",
-      ];
+      const sections = navItems.map(item => item.id);
       const sectionElements = sections.map((id) => document.getElementById(id));
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -52,16 +54,14 @@ function Navbar() {
       }
     };
 
-    // Close mobile menu on escape key press
     const handleKeyPress = (e) => {
       if (e.key === 'Escape' && isOpen) {
         setIsOpen(false);
       }
     };
 
-    // Close mobile menu on resize (when switching to desktop)
     const handleResize = () => {
-      if (window.innerWidth >= 768 && isOpen) {
+      if (window.innerWidth >= 1024 && isOpen) {
         setIsOpen(false);
       }
     };
@@ -70,7 +70,6 @@ function Navbar() {
     window.addEventListener("keydown", handleKeyPress);
     window.addEventListener("resize", handleResize);
     
-    // Prevent body scroll when mobile menu is open
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -81,387 +80,353 @@ function Navbar() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("keydown", handleKeyPress);
       window.removeEventListener("resize", handleResize);
-      document.body.style.overflow = 'unset'; // Cleanup on unmount
+      document.body.style.overflow = 'unset';
     };
-  }, [isOpen]);
+  }, [isOpen, navItems]);
 
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-  };
-
-  // Close mobile navbar when clicking a link
-  const closeNavbar = () => {
-    if (isOpen) setIsOpen(false);
-  };
-
-  // Enhanced mobile navigation handler
-  const handleMobileNavClick = (sectionId) => {
-    setIsOpen(false); // Close menu immediately for better UX
-
-    // Small delay to allow menu close animation before scrolling
-    setTimeout(() => {
-      if (location.pathname !== "/") {
-        navigate("/");
-        setTimeout(() => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            const offsetTop = element.offsetTop - 80;
-            window.scrollTo({
-              top: offsetTop,
-              behavior: "smooth",
-            });
-          }
-        }, 100);
-      } else {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const offsetTop = element.offsetTop - 80;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: "smooth",
-          });
-        }
-      }
-    }, 150);
-  };
-
-  // Navigate to home page and scroll to section
-  const scrollToSection = (sectionId) => {
-    // If we're not on the home page, navigate to home first
+  const scrollToSection = useCallback((sectionId) => {
     if (location.pathname !== "/") {
       navigate("/");
-      // Wait for navigation to complete, then scroll
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
-          const offsetTop = element.offsetTop - 80; // Account for navbar height
-          window.scrollTo({
-            top: offsetTop,
-            behavior: "smooth",
-          });
+          const offsetTop = element.offsetTop - 80;
+          window.scrollTo({ top: offsetTop, behavior: "smooth" });
         }
       }, 100);
     } else {
-      // We're already on home page, just scroll
       const element = document.getElementById(sectionId);
       if (element) {
-        const offsetTop = element.offsetTop - 80; // Account for navbar height
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
-        });
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({ top: offsetTop, behavior: "smooth" });
       }
     }
-    closeNavbar();
-  };
+    setIsOpen(false);
+  }, [location.pathname, navigate]);
+
+  const handleMobileNavClick = useCallback((sectionId) => {
+    setIsOpen(false);
+    setTimeout(() => {
+      scrollToSection(sectionId);
+    }, 150);
+  }, [scrollToSection]);
 
   return (
-    <motion.nav
-      className={`fixed w-full z-30 transition-all duration-500 ${
-        scrolled
-          ? "glass-effect shadow-xl border-b border-slate-700/50 backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex-shrink-0">
-            <motion.button
-              onClick={() => scrollToSection("home")}
-              className="flex items-center gap-3"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="w-10 h-10 rounded-b-lg flex items-center justify-center p-1">
-                <img 
-                  src="/logo-bg.png" 
-                  alt="GiaSi Dev Logo" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <span className="text-2xl font-bold gradient-text">
-                giasinguyen
-              </span>
-            </motion.button>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            <NavLink
-              sectionId="home"
-              active={activeSection === "home"}
-              label="Home"
-              onClick={() => scrollToSection("home")}
-            />
-            <NavLink
-              sectionId="about"
-              active={activeSection === "about"}
-              label="About"
-              onClick={() => scrollToSection("about")}
-            />
-            <NavLink
-              sectionId="projects"
-              active={activeSection === "projects"}
-              label="Projects"
-              onClick={() => scrollToSection("projects")}
-            />
-            <NavLink
-              sectionId="tech-stack"
-              active={activeSection === "tech-stack"}
-              label="Tech Stack"
-              onClick={() => scrollToSection("tech-stack")}
-            />
-            <NavLink
-              sectionId="contact"
-              active={activeSection === "contact"}
-              label="Contact"
-              onClick={() => scrollToSection("contact")}
-            />
-            <NavLink
-              sectionId="resume"
-              active={activeSection === "resume"}
-              label="Resume"
-              onClick={() => scrollToSection("resume")}
-            />
-
-            <div className="ml-2">
-              <ThemeSwitcher />
-            </div>
-
-            <a
-              href="https://github.com/giasinguyen"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-outline"
-            >
-              GitHub
-            </a>
-          </div>
-
-          {/* Mobile menu button with improved styling */}
-          <div className="md:hidden flex items-center gap-3">
-            <ThemeSwitcher />
-
-            <motion.button
-              onClick={toggleNavbar}
-              type="button"
-              className="relative inline-flex items-center justify-center p-3 rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 text-slate-300 hover:text-blue-400 hover:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition-all duration-300"
-              aria-controls="mobile-menu"
-              aria-expanded={isOpen}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="sr-only">{isOpen ? 'Close menu' : 'Open menu'}</span>
-              <motion.div
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                {isOpen ? (
-                  <FaTimes className="h-5 w-5" />
-                ) : (
-                  <FaBars className="h-5 w-5" />
-                )}
-              </motion.div>
-            </motion.button>
-          </div>
-        </div>
-      </div>
-
-      {/* Enhanced Mobile Menu Overlay */}
-      <motion.div
-        className={`fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-40 md:hidden ${
-          isOpen ? 'pointer-events-auto' : 'pointer-events-none'
+    <>
+      <motion.header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "py-2"
+            : "py-4"
         }`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isOpen ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        onClick={() => setIsOpen(false)}
-      />
-
-      {/* Redesigned Mobile Menu */}
-      <motion.div
-        className={`fixed right-4 top-20 w-80 max-w-[calc(100vw-2rem)] bg-slate-900/95 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl shadow-black/50 z-50 md:hidden overflow-hidden`}
-        initial={{ opacity: 0, scale: 0.95, x: 20, y: -20 }}
-        animate={{ 
-          opacity: isOpen ? 1 : 0,
-          scale: isOpen ? 1 : 0.95,
-          x: isOpen ? 0 : 20,
-          y: isOpen ? 0 : -20,
-          pointerEvents: isOpen ? 'auto' : 'none'
-        }}
-        transition={{ 
-          duration: 0.3,
-          ease: [0.25, 0.1, 0.25, 1]
-        }}
-        id="mobile-menu"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        {/* Menu Header */}
-        <div className="px-6 py-4 border-b border-slate-700/50 bg-slate-800/30">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-violet-500 rounded-lg flex items-center justify-center">
-              <img 
-                src="/logo-bg.png" 
-                alt="Logo" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div>
-              <h3 className="font-bold text-slate-100 text-sm">Navigation</h3>
-              <p className="text-slate-400 text-xs">Quick access to sections</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Links */}
-        <div className="p-4 space-y-2">
-          <MobileNavLink
-            sectionId="home"
-            icon={<FaHome />}
-            label="Home"
-            onClick={() => handleMobileNavClick("home")}
-            active={activeSection === "home"}
-          />
-          <MobileNavLink
-            sectionId="about"
-            icon={<FaUser />}
-            label="About"
-            onClick={() => handleMobileNavClick("about")}
-            active={activeSection === "about"}
-          />
-          <MobileNavLink
-            sectionId="projects"
-            icon={<FaLaptopCode />}
-            label="Projects"
-            onClick={() => handleMobileNavClick("projects")}
-            active={activeSection === "projects"}
-          />
-          <MobileNavLink
-            sectionId="tech-stack"
-            icon={<FaCogs />}
-            label="Tech Stack"
-            onClick={() => handleMobileNavClick("tech-stack")}
-            active={activeSection === "tech-stack"}
-          />
-          <MobileNavLink
-            sectionId="resume"
-            icon={<FaFile />}
-            label="Resume"
-            onClick={() => handleMobileNavClick("resume")}
-            active={activeSection === "resume"}
-          />
-          <MobileNavLink
-            sectionId="contact"
-            icon={<FaEnvelope />}
-            label="Contact"
-            onClick={() => handleMobileNavClick("contact")}
-            active={activeSection === "contact"}
-          />
-        </div>
-
-        {/* Menu Footer */}
-        <div className="px-4 py-4 border-t border-slate-700/50 bg-slate-800/20">
-          <motion.a
-            href="https://github.com/giasinguyen"
-            target="_blank"
-            rel="noreferrer"
-            className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
-            onClick={closeNavbar}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+        {/* Main Navbar Container */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className={`relative flex items-center justify-between rounded-2xl transition-all duration-500 ${
+              scrolled
+                ? "bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 shadow-2xl shadow-black/20 px-6 py-3"
+                : "bg-transparent px-2 py-2"
+            }`}
+            layout
           >
-            <FaCogs className="text-xs" />
-            GitHub Profile
-          </motion.a>
+            {/* Logo Section */}
+            <motion.button
+              onClick={() => scrollToSection("home")}
+              className="relative flex items-center gap-3 group"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {/* Animated Logo Container */}
+              <div className="relative">
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-violet-500 rounded-xl blur-lg opacity-50 group-hover:opacity-80 transition-opacity duration-300"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <div className="relative w-11 h-11 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl border border-slate-700/50 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/logo-bg.png" 
+                    alt="GiaSi Dev Logo" 
+                    className="w-8 h-8 object-contain"
+                  />
+                </div>
+              </div>
+              
+              {/* Brand Name */}
+              <div className="hidden sm:block">
+                <motion.span 
+                  className="text-xl font-bold bg-gradient-to-r from-slate-100 via-blue-200 to-violet-200 bg-clip-text text-transparent"
+                >
+                  GiaSi
+                </motion.span>
+                <span className="text-slate-500 font-medium text-sm block -mt-1">Developer</span>
+              </div>
+            </motion.button>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center">
+              {/* Nav Pills Container */}
+              <div className="relative flex items-center gap-1 p-1.5 bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700/30">
+                {navItems.map((item) => (
+                  <motion.button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    onMouseEnter={() => setHoveredItem(item.id)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                    className={`relative px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "text-white"
+                        : "text-slate-400 hover:text-slate-200"
+                    }`}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {/* Active Background */}
+                    {activeSection === item.id && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-blue-600 to-violet-600 rounded-xl shadow-lg shadow-blue-500/25"
+                        layoutId="navbar-active-pill"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    
+                    {/* Hover Background */}
+                    {hoveredItem === item.id && activeSection !== item.id && (
+                      <motion.div
+                        className="absolute inset-0 bg-slate-700/50 rounded-xl"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    )}
+                    
+                    <span className="relative z-10">{item.label}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </nav>
+
+            {/* Desktop Right Section */}
+            <div className="hidden lg:flex items-center gap-3">
+              {/* Social Links */}
+              <div className="flex items-center gap-2 mr-2">
+                <motion.a
+                  href="https://github.com/giasinguyen"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 rounded-xl bg-slate-800/50 border border-slate-700/30 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700/50 hover:border-slate-600 transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaGithub className="w-5 h-5" />
+                </motion.a>
+                <motion.a
+                  href="https://linkedin.com/in/giasinguyen"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 rounded-xl bg-slate-800/50 border border-slate-700/30 flex items-center justify-center text-slate-400 hover:text-blue-400 hover:bg-slate-700/50 hover:border-blue-500/30 transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaLinkedin className="w-5 h-5" />
+                </motion.a>
+              </div>
+
+              {/* CTA Button */}
+              <motion.button
+                onClick={() => scrollToSection("contact")}
+                className="group relative px-6 py-2.5 rounded-xl font-semibold text-sm overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Button Background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-violet-600 transition-all duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-violet-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Shine Effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                </div>
+                
+                <span className="relative z-10 flex items-center gap-2 text-white">
+                  Let's Talk
+                  <FaArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </motion.button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden relative w-12 h-12 rounded-xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/30 flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FaTimes className="w-5 h-5" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FaBars className="w-5 h-5" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          </motion.div>
         </div>
-      </motion.div>
-    </motion.nav>
-  );
-}
+      </motion.header>
 
-// Desktop Nav Link with active state
-function NavLink({ label, active, onClick }) {
-  return (
-    <motion.button
-      onClick={onClick}
-      className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-        active
-          ? "text-blue-400 bg-blue-500/10"
-          : "text-slate-300 hover:text-blue-400 hover:bg-slate-800/50"
-      }`}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      {label}
-      {active && (
-        <motion.div
-          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full"
-          layoutId="navbar-indicator"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.3 }}
-        />
-      )}
-    </motion.button>
-  );
-}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+            />
 
-// Enhanced Mobile Nav Link with modern design
-function MobileNavLink({ icon, label, onClick, active }) {
-  return (
-    <motion.button
-      onClick={onClick}
-      className={`group w-full flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-        active
-          ? "bg-gradient-to-r from-blue-500/20 to-violet-500/20 text-blue-400 border border-blue-500/30 shadow-lg shadow-blue-500/10"
-          : "text-slate-300 hover:bg-slate-800/50 hover:text-blue-300 border border-transparent hover:border-slate-600/30"
-      }`}
-      whileHover={{ scale: 1.02, x: 4 }}
-      whileTap={{ scale: 0.98 }}
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      {/* Icon Container */}
-      <motion.div
-        className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
-          active
-            ? "bg-gradient-to-r from-blue-500 to-violet-500 text-white shadow-lg"
-            : "bg-slate-800/50 text-slate-400 group-hover:bg-slate-700/70 group-hover:text-blue-400"
-        }`}
-        whileHover={{ rotate: active ? 0 : 5 }}
-      >
-        {icon}
-      </motion.div>
+            {/* Mobile Menu Panel */}
+            <motion.div
+              className="fixed top-0 right-0 h-full w-full max-w-sm bg-slate-900/95 backdrop-blur-xl border-l border-slate-700/50 z-50 lg:hidden overflow-hidden"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            >
+              {/* Menu Header */}
+              <div className="flex items-center justify-between p-6 border-b border-slate-700/50">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-violet-500 rounded-xl flex items-center justify-center">
+                    <img 
+                      src="/logo-bg.png" 
+                      alt="Logo" 
+                      className="w-7 h-7 object-contain"
+                    />
+                  </div>
+                  <div>
+                    <span className="text-lg font-bold text-white">Menu</span>
+                    <p className="text-xs text-slate-400">Navigate to sections</p>
+                  </div>
+                </div>
+                <motion.button
+                  onClick={() => setIsOpen(false)}
+                  className="w-10 h-10 rounded-xl bg-slate-800/50 border border-slate-700/30 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaTimes className="w-5 h-5" />
+                </motion.button>
+              </div>
 
-      {/* Label */}
-      <span className="flex-1 text-left">
-        {label}
-      </span>
+              {/* Navigation Links */}
+              <div className="p-4 space-y-2">
+                {navItems.map((item, index) => (
+                  <motion.button
+                    key={item.id}
+                    onClick={() => handleMobileNavClick(item.id)}
+                    className={`group w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "bg-gradient-to-r from-blue-600/20 to-violet-600/20 border border-blue-500/30"
+                        : "hover:bg-slate-800/50 border border-transparent"
+                    }`}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 + 0.1 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {/* Icon */}
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "bg-gradient-to-br from-blue-500 to-violet-500 text-white shadow-lg shadow-blue-500/25"
+                        : "bg-slate-800/50 text-slate-400 group-hover:bg-slate-700/50 group-hover:text-blue-400"
+                    }`}>
+                      <item.icon className="w-5 h-5" />
+                    </div>
+                    
+                    {/* Label */}
+                    <div className="flex-1 text-left">
+                      <span className={`font-medium transition-colors duration-300 ${
+                        activeSection === item.id ? "text-white" : "text-slate-300 group-hover:text-white"
+                      }`}>
+                        {item.label}
+                      </span>
+                      {activeSection === item.id && (
+                        <span className="block text-xs text-blue-400 mt-0.5">Current section</span>
+                      )}
+                    </div>
 
-      {/* Active Indicator */}
-      {active && (
-        <motion.div
-          className="flex-shrink-0 w-2 h-2 bg-blue-400 rounded-full"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        />
-      )}
+                    {/* Arrow */}
+                    <FaArrowRight className={`w-4 h-4 transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "text-blue-400"
+                        : "text-slate-600 group-hover:text-slate-400 group-hover:translate-x-1"
+                    }`} />
+                  </motion.button>
+                ))}
+              </div>
 
-      {/* Hover Arrow */}
-      {!active && (
-        <motion.div
-          className="flex-shrink-0 w-4 h-4 text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          initial={{ x: -10 }}
-          whileHover={{ x: 0 }}
-        >
-          →
-        </motion.div>
-      )}
-    </motion.button>
+              {/* Social Links */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-slate-700/50 bg-slate-900/50 backdrop-blur-sm">
+                <p className="text-xs text-slate-500 mb-4 uppercase tracking-wider">Connect with me</p>
+                <div className="flex items-center gap-3">
+                  <motion.a
+                    href="https://github.com/giasinguyen"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800/50 border border-slate-700/30 text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-300"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <FaGithub className="w-5 h-5" />
+                    <span className="text-sm font-medium">GitHub</span>
+                  </motion.a>
+                  <motion.a
+                    href="https://linkedin.com/in/giasinguyen"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 hover:bg-blue-600/30 transition-all duration-300"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <FaLinkedin className="w-5 h-5" />
+                    <span className="text-sm font-medium">LinkedIn</span>
+                  </motion.a>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
