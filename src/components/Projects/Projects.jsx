@@ -1,258 +1,242 @@
 import { useState, useMemo, useCallback } from 'react'
-import { FaRocket, FaFilter, FaTimes, FaChevronDown, FaChevronUp } from 'react-icons/fa'
-import LazyProjectCard from './LazyProjectCard'
+import { FaGithub, FaExternalLinkAlt, FaUsers, FaCalendarAlt, FaStar } from 'react-icons/fa'
 import { useProjects, getProjectCategories } from '../../hooks/useProjects'
-import { CardSkeleton } from '../UI/LoadingSpinner'
 import SEOHead from '../SEO/SEOHead'
 import { SEO_CONFIGS } from '../SEO/seoConfigs'
 import { motion, AnimatePresence } from 'framer-motion'
 
 function Projects() {
   const [filter, setFilter] = useState('all')
-  const [showAll, setShowAll] = useState(false)
-  const [showFilters, setShowFilters] = useState(false)
-
-  // Use custom hook to load projects
   const { projects = [], loading, error, filteredProjects = [] } = useProjects(filter)
-
-  // Get available categories with memoization
   const categories = useMemo(() => getProjectCategories(Array.isArray(projects) ? projects : []), [projects])
 
-  // Limit projects display - show only when expanded
-  const displayedProjects = useMemo(() => {
-    if (!showAll || !Array.isArray(filteredProjects)) return [] // Hide all projects by default
-    return filteredProjects
-  }, [filteredProjects, showAll])
-
-  // Filter handler with useCallback to prevent unnecessary re-renders
   const handleFilterChange = useCallback((newFilter) => {
     setFilter(newFilter)
-    setShowAll(false) // Reset to show limited when filter changes
   }, [])
 
-  // Toggle show all projects
-  const toggleShowAll = useCallback(() => {
-    setShowAll(prev => !prev)
-  }, [])
-
-  // Toggle filters visibility
-  const toggleFilters = useCallback(() => {
-    setShowFilters(prev => !prev)
-  }, [])
-
-  // Optimized loading skeleton
+  // Loading state
   if (loading) {
     return (
-      <main className="section-padding pt-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 min-h-screen">
-        <div className="max-w-7xl mx-auto">
-          {/* Skeleton Header */}
-          <div className="text-center mb-16">
-            <motion.div 
-              className="inline-flex items-center gap-3 mb-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="w-12 h-12 bg-slate-700/50 rounded-2xl animate-pulse" />
-              <div className="w-48 h-8 bg-slate-700/50 rounded-xl animate-pulse" />
-            </motion.div>
-            <div className="space-y-4">
-              <div className="w-96 h-12 bg-slate-700/50 rounded-lg mx-auto animate-pulse" />
-              <div className="w-64 h-6 bg-slate-600/50 rounded-lg mx-auto animate-pulse" />
-            </div>
+      <section className="section-padding py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="w-48 h-10 bg-slate-800/50 rounded-xl mx-auto mb-4 animate-pulse" />
+            <div className="w-96 h-6 bg-slate-800/50 rounded-lg mx-auto animate-pulse" />
           </div>
-
-          {/* Skeleton Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <CardSkeleton key={i} />
+          <div className="space-y-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-slate-800/30 rounded-2xl h-48 animate-pulse" />
             ))}
           </div>
         </div>
-      </main>
+      </section>
     )
   }
 
   if (error) {
     return (
-      <div className="section-padding pt-28 min-h-screen flex items-center justify-center">
+      <section className="section-padding py-20 flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-400 text-xl mb-4">Error loading projects</p>
           <p className="text-slate-400">{error}</p>
         </div>
-      </div>
+      </section>
     )
   }
 
   return (
     <>
       <SEOHead {...SEO_CONFIGS.projects} />
-      <section className="section-padding pt-28">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Title */}
+      <section className="section-padding py-20">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
           <motion.div 
-            className="mb-16 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.8,
-              ease: [0.25, 0.1, 0.25, 1]
-            }}
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-8"
-            >
-              <FaRocket className="w-6 h-6 text-blue-400" />
-              <span className="text-lg font-semibold text-slate-300">
-                Featured Work
-              </span>
-            </motion.div>
-
-            <motion.h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              My <span className="gradient-text">Projects</span>
-            </motion.h1>
-
-            <motion.div 
-              className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto mb-8 rounded-full"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            />
-
-            <motion.p 
-              className="text-slate-300 text-lg max-w-3xl mx-auto mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              A showcase of my technical skills and problem-solving abilities through 
-              real-world applications and innovative solutions.
-            </motion.p>
-
-            {/* Toggle Filters Button */}
-            <motion.button
-              onClick={toggleFilters}
-              className="inline-flex items-center gap-2 glass-effect border border-slate-700/50 text-slate-300 hover:text-blue-400 hover:border-blue-500/50 px-6 py-3 rounded-xl transition-all duration-300"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-            >
-              <FaFilter className="text-sm" />
-              <span>Filters</span>
-              {showFilters ? <FaChevronUp className="text-sm" /> : <FaChevronDown className="text-sm" />}
-            </motion.button>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Featured <span className="gradient-text">Projects</span>
+            </h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              A collection of projects showcasing my skills in full-stack development
+            </p>
           </motion.div>
 
-          {/* Filter Options - Collapsible */}
-          <AnimatePresence>
-            {showFilters && (
-              <motion.div
-                className="mb-12"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex flex-wrap justify-center gap-3">
-                  {Array.isArray(categories) && categories.map((category) => (
-                    <motion.button
-                      key={category.value}
-                      onClick={() => handleFilterChange(category.value)}
-                      className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                        filter === category.value
-                          ? 'bg-blue-600/20 border-2 border-blue-400/60 text-blue-300 shadow-lg shadow-blue-500/20'
-                          : 'glass-effect border border-slate-700/50 text-slate-300 hover:border-slate-600 hover:text-slate-200'
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {category.label}
-                      {category.count > 0 && (
-                        <span className="ml-2 text-xs opacity-70">
-                          ({category.count})
-                        </span>
-                      )}
-                    </motion.button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Compact Show/Hide Projects Button */}
-          {filteredProjects.length > 0 && (
-            <motion.div 
-              className="text-center mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-            >
+          {/* Filter Pills */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-2 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            {categories.map((category) => (
               <button
-                onClick={toggleShowAll}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 transform hover:-translate-y-1 hover:scale-105"
+                key={category.value}
+                onClick={() => handleFilterChange(category.value)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  filter === category.value
+                    ? 'bg-gradient-to-r from-blue-600 to-violet-600 text-white shadow-lg shadow-blue-500/25'
+                    : 'bg-slate-800/50 text-slate-400 hover:text-white hover:bg-slate-700/50 border border-slate-700/50'
+                }`}
               >
-                {showAll ? (
-                  <>
-                    <FaChevronUp className="text-sm" />
-                    Hide Projects
-                  </>
-                ) : (
-                  <>
-                    <FaChevronDown className="text-sm" />
-                    View All Projects
-                  </>
-                )}
+                {category.label}
               </button>
-            </motion.div>
-          )}
+            ))}
+          </motion.div>
 
-          {/* Compact Projects Preview */}
-          {!showAll ? (
+          {/* Projects List */}
+          <div className="space-y-6">
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {filteredProjects.length === 0 && (
             <motion.div 
-              className="text-center py-16"
+              className="text-center py-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              <div className="glass-effect rounded-xl p-8 max-w-md mx-auto">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500/20 to-violet-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <FaRocket className="w-8 h-8 text-blue-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-300 mb-2">Ready to Explore?</h3>
-                <p className="text-slate-400 text-sm">
-                  Click above to discover my latest projects
-                </p>
-              </div>
+              <p className="text-slate-400">No projects found in this category</p>
             </motion.div>
-          ) : (
-            <>
-              <AnimatePresence mode="popLayout">
-                <motion.div 
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
-                  layout
-                >
-                  {displayedProjects.map((project, index) => (
-                    <LazyProjectCard
-                      key={`${project.id}-${filter}`}
-                      project={project}
-                      index={index}
-                      className="h-full"
-                    />
-                  ))}
-                </motion.div>
-              </AnimatePresence>
-            </>
           )}
         </div>
       </section>
     </>
+  )
+}
+
+// Clean Project Card Component
+function ProjectCard({ project, index }) {
+  const [imageError, setImageError] = useState(false)
+
+  return (
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="group relative"
+    >
+      <div className={`relative bg-slate-900/50 backdrop-blur-sm rounded-2xl border transition-all duration-500 overflow-hidden ${
+        project.featured 
+          ? 'border-blue-500/30 hover:border-blue-400/50 shadow-lg shadow-blue-500/5' 
+          : 'border-slate-700/50 hover:border-slate-600/50'
+      }`}>
+        
+        {/* Featured Badge */}
+        {project.featured && (
+          <div className="absolute top-4 right-4 z-10">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 text-white text-xs font-medium">
+              <FaStar className="w-3 h-3" />
+              Featured
+            </span>
+          </div>
+        )}
+
+        <div className="flex flex-col md:flex-row">
+          {/* Image Section */}
+          <div className="md:w-72 lg:w-80 flex-shrink-0">
+            <div className="relative h-48 md:h-full overflow-hidden bg-slate-800/50">
+              {!imageError ? (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={() => setImageError(true)}
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
+                  <span className="text-4xl font-bold text-slate-600">{project.title.charAt(0)}</span>
+                </div>
+              )}
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent md:bg-gradient-to-r" />
+            </div>
+          </div>
+
+          {/* Content Section */}
+          <div className="flex-1 p-6 md:p-8 flex flex-col">
+            {/* Title & Role */}
+            <div className="mb-4">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">
+                {project.title}
+              </h3>
+              <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <FaCalendarAlt className="w-3.5 h-3.5 text-blue-400" />
+                  {project.period}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <FaUsers className="w-3.5 h-3.5 text-violet-400" />
+                  {project.role}
+                </span>
+                {project.teamSize > 1 && (
+                  <span className="text-slate-500">
+                    Team of {project.teamSize}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-5 flex-grow">
+              {project.description}
+            </p>
+
+            {/* Tech Tags */}
+            <div className="flex flex-wrap gap-2 mb-5">
+              {project.tags.slice(0, 6).map((tag, i) => (
+                <span
+                  key={i}
+                  className="px-2.5 py-1 text-xs font-medium bg-slate-800/80 text-slate-300 rounded-lg border border-slate-700/50"
+                >
+                  {tag}
+                </span>
+              ))}
+              {project.tags.length > 6 && (
+                <span className="px-2.5 py-1 text-xs font-medium text-slate-500">
+                  +{project.tags.length - 6} more
+                </span>
+              )}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex items-center gap-3">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/50 hover:border-slate-600 text-sm font-medium transition-all duration-300"
+              >
+                <FaGithub className="w-4 h-4" />
+                <span>Source</span>
+              </a>
+              {project.demoUrl && project.demoUrl !== project.githubUrl && (
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 text-white text-sm font-medium transition-all duration-300 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30"
+                >
+                  <FaExternalLinkAlt className="w-3.5 h-3.5" />
+                  <span>Live Demo</span>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.article>
   )
 }
 
