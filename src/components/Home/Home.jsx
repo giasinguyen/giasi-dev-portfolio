@@ -19,17 +19,17 @@ const loadHeavyDependencies = async () => {
   try {
     const [heroModelModule, gsapModule] = await Promise.all([
       import("./HeroModel"),
-      import("gsap")
+      import("gsap"),
     ]);
-    
+
     HeroModel = heroModelModule.default;
     gsap = gsapModule.default;
-    
+
     const scrollTriggerModule = await import("gsap/ScrollTrigger");
     ScrollTrigger = scrollTriggerModule.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
   } catch (error) {
-    console.warn('Failed to load heavy dependencies:', error);
+    console.warn("Failed to load heavy dependencies:", error);
   }
 };
 
@@ -44,19 +44,27 @@ function Home() {
   useEffect(() => {
     const checkPerformance = () => {
       const mobile = window.innerWidth < 768;
-      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      const isHighPerformance = !connection || connection.effectiveType === '4g';
+      const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection;
+      const isHighPerformance =
+        !connection || connection.effectiveType === "4g";
       const hasGoodHardware = window.devicePixelRatio <= 2;
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
       setIsMobile(mobile);
-      setShow3D(isHighPerformance && hasGoodHardware && !mobile && !prefersReducedMotion);
+      setShow3D(
+        isHighPerformance && hasGoodHardware && !mobile && !prefersReducedMotion
+      );
       setAnimationsEnabled(!mobile && !prefersReducedMotion);
     };
 
     checkPerformance();
-    window.addEventListener('resize', checkPerformance);
-    return () => window.removeEventListener('resize', checkPerformance);
+    window.addEventListener("resize", checkPerformance);
+    return () => window.removeEventListener("resize", checkPerformance);
   }, []);
 
   // Load heavy dependencies only when needed
@@ -119,13 +127,9 @@ function Home() {
 
   return (
     <section className="section-padding pt-32 pb-24 min-h-screen flex items-center">
-      <div
-        className="max-w-6xl mx-auto w-full"
-        ref={contentRef}
-      >
+      <div className="max-w-6xl mx-auto w-full" ref={contentRef}>
         {/* Main Hero Content - Centered Layout */}
         <div className="text-center space-y-8">
-          
           {/* Status Badge */}
           <div className="hero-element flex justify-center">
             <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-neutral-900/80 border border-neutral-700/50 backdrop-blur-sm">
@@ -133,25 +137,74 @@ function Home() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
               </span>
-              <span className="text-neutral-300 text-sm font-medium">Available for opportunities</span>
+              <span className="text-neutral-300 text-sm font-medium">
+                Available for opportunities
+              </span>
             </div>
           </div>
 
-          {/* Main Name Section */}
-          <div className="hero-element space-y-4">
-            <p className="text-neutral-400 text-lg font-medium tracking-wide">Hello, I'm</p>
-            
-            {/* Name Display - Clean & Bold */}
-            <h1 className="relative">
-              <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-100 tracking-tight mb-2">
-                Nguyen Tran
-              </span>
-              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight">
-                <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 bg-clip-text text-transparent">
-                  Gia Si
-                </span>
-              </span>
-            </h1>
+          {/* Main Name Section - Coder Style */}
+          <div className="hero-element space-y-6">
+            {/* Code-style greeting */}
+            <div className="inline-flex items-center gap-2 font-mono text-neutral-400">
+              <span className="text-amber-500">&lt;</span>
+              <span>Hello World</span>
+              <span className="text-amber-500">/&gt;</span>
+            </div>
+
+            {/* Name Display - Code Format */}
+            <div className="relative">
+              {/* Code block container */}
+              <div className="inline-block text-left bg-neutral-900/50 border border-neutral-800/50 rounded-2xl px-8 py-6 backdrop-blur-sm">
+                {/* Code line 1 */}
+                <div className="font-mono text-base md:text-lg text-neutral-500 mb-3">
+                  <span className="text-neutral-600 select-none">1 </span>
+                  <span className="text-amber-400">class</span>
+                  <span className="text-neutral-100"> Developer </span>
+                  <span className="text-neutral-500">{"{"}</span>
+                </div>
+
+                {/* Code line 2 - Name */}
+                <div className="font-mono mb-3">
+                  <span className="text-neutral-600 select-none">2 </span>
+                  <span className="text-amber-400 text-base md:text-lg">
+                    name
+                  </span>
+                  <span className="text-neutral-500 text-base md:text-lg">
+                    {" "}
+                    ={" "}
+                  </span>
+                  <span className="text-green-400 text-xl md:text-2xl lg:text-3xl font-semibold">
+                    "Nguyen Tran Gia Si"
+                  </span>
+                  <span className="text-neutral-500">;</span>
+                </div>
+
+                {/* Code line 3 - Alias */}
+                <div className="font-mono mb-3">
+                  <span className="text-neutral-600 select-none">3 </span>
+                  <span className="text-amber-400 text-base md:text-lg">
+                    alias
+                  </span>
+                  <span className="text-neutral-500 text-base md:text-lg">
+                    {" "}
+                    ={" "}
+                  </span>
+                  <span className="text-3xl md:text-4xl lg:text-5xl font-black">
+                    <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 bg-clip-text text-transparent">
+                      "Gia Si"
+                    </span>
+                  </span>
+                  <span className="text-neutral-500">;</span>
+                </div>
+
+                {/* Code line 4 */}
+                <div className="font-mono text-base md:text-lg text-neutral-500">
+                  <span className="text-neutral-600 select-none">4 </span>
+                  <span>{"}"}</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Role TypeWriter */}
@@ -162,7 +215,7 @@ function Home() {
                 <TypeWriter
                   texts={[
                     "Java Backend Developer",
-                    "Spring Boot Specialist", 
+                    "Spring Boot Specialist",
                     "Software Engineer",
                     "Full Stack Developer",
                   ]}
@@ -175,9 +228,16 @@ function Home() {
 
           {/* Description */}
           <p className="hero-element text-neutral-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-            Final-year <span className="text-amber-400 font-medium">Software Engineering</span> student 
-            specializing in <span className="text-amber-400 font-medium">Java & Spring Boot</span>. 
-            Passionate about building scalable, high-performance backend systems.
+            Final-year{" "}
+            <span className="text-amber-400 font-medium">
+              Software Engineering
+            </span>{" "}
+            student specializing in{" "}
+            <span className="text-amber-400 font-medium">
+              Java & Spring Boot
+            </span>
+            . Passionate about building scalable, high-performance backend
+            systems.
           </p>
 
           {/* CTA Buttons */}
@@ -231,34 +291,8 @@ function Home() {
               <FaLinkedin className="h-6 w-6" />
             </a>
           </div>
-
-          {/* Tech Stack */}
-          <div className="hero-element pt-8" ref={techStackRef}>
-            <p className="text-neutral-500 text-sm font-medium mb-4 uppercase tracking-wider">
-              Tech Stack
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                { icon: FaJava, name: "Java", color: "text-red-400", hoverBorder: "hover:border-red-500/40" },
-                { icon: SiSpring, name: "Spring", color: "text-green-400", hoverBorder: "hover:border-green-500/40" },
-                { icon: SiSpringboot, name: "Spring Boot", color: "text-green-500", hoverBorder: "hover:border-green-500/40" },
-                { icon: SiReact, name: "React", color: "text-cyan-400", hoverBorder: "hover:border-cyan-500/40" },
-                { icon: SiTypescript, name: "TypeScript", color: "text-blue-400", hoverBorder: "hover:border-blue-500/40" },
-                { icon: SiTailwindcss, name: "Tailwind", color: "text-sky-400", hoverBorder: "hover:border-sky-500/40" },
-              ].map((tech, index) => (
-                <span
-                  key={index}
-                  className={`tech-tag flex items-center gap-2 px-4 py-2.5 bg-neutral-800/40 ${tech.color} text-sm font-medium rounded-xl border border-neutral-700/40 ${tech.hoverBorder} transition-all duration-300 ${!isMobile ? 'hover:-translate-y-0.5' : ''}`}
-                >
-                  <tech.icon className="text-lg" /> {tech.name}
-                </span>
-              ))}
-            </div>
-          </div>
-
         </div>
 
-        {/* Scroll Indicator */}
         {!isMobile && (
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500">
             <span className="text-xs uppercase tracking-widest">Scroll</span>
