@@ -3,12 +3,10 @@ import TypeWriter from "./TypeWriter";
 import { FaArrowRight, FaGithub, FaLinkedin, FaJava } from "react-icons/fa";
 import {
   SiSpringboot,
-  SiJavascript,
   SiReact,
   SiTailwindcss,
   SiTypescript,
   SiSpring,
-  SiSpringsecurity,
 } from "react-icons/si";
 
 // Lazy load heavy dependencies only when needed
@@ -120,154 +118,155 @@ function Home() {
   }, [animationsEnabled]);
 
   return (
-    <section className="section-padding pt-32 pb-20">
+    <section className="section-padding pt-32 pb-24 min-h-screen flex items-center">
       <div
-        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+        className="max-w-6xl mx-auto w-full"
         ref={contentRef}
       >
-        {/* Left column - Text content */}
-        <div className="space-y-8">
-          <div className="hero-element">
-            <p className="text-slate-300 font-medium text-lg mb-2">Hello, I'm</p>
-            <h1 className="font-bold mb-6">
-              <span className={`text-4xl sm:text-5xl md:text-7xl gradient-text drop-shadow-2xl relative block ${isMobile ? 'leading-relaxed' : 'leading-normal whitespace-nowrap'} ${!isMobile ? 'animate-pulse-slow' : ''} py-2 font-extrabold`}>
-                <span className="inline-block gradient-text">Nguyen Tran</span>{' '}
-                <span className="inline-block gradient-text">Gia Si</span>
-                {!isMobile && <span className="absolute -inset-2 bg-white/3 blur-2xl rounded-2xl -z-10"></span>}
+        {/* Main Hero Content - Centered Layout */}
+        <div className="text-center space-y-8">
+          
+          {/* Status Badge */}
+          <div className="hero-element flex justify-center">
+            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-neutral-900/80 border border-neutral-700/50 backdrop-blur-sm">
+              <span className="flex h-2.5 w-2.5 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+              </span>
+              <span className="text-neutral-300 text-sm font-medium">Available for opportunities</span>
+            </div>
+          </div>
+
+          {/* Main Name Section */}
+          <div className="hero-element space-y-4">
+            <p className="text-neutral-400 text-lg font-medium tracking-wide">Hello, I'm</p>
+            
+            {/* Name Display - Clean & Bold */}
+            <h1 className="relative">
+              <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-neutral-100 tracking-tight mb-2">
+                Nguyen Tran
+              </span>
+              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight">
+                <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 bg-clip-text text-transparent">
+                  Gia Si
+                </span>
               </span>
             </h1>
           </div>
 
-          <div className="hero-element text-2xl md:text-4xl font-semibold text-slate-200 mb-8 h-16">
-            <TypeWriter
-              texts={[
-                "Java Developer",
-                "Spring Boot Expert", 
-                "Backend Engineer",
-                "Full Stack Developer",
-              ]}
-              delay={isMobile ? 100 : 80}
-              deleteDelay={isMobile ? 50 : 30}
-            />
+          {/* Role TypeWriter */}
+          <div className="hero-element">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-neutral-800/50 border border-neutral-700/50 rounded-2xl">
+              <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+              <span className="text-xl md:text-2xl font-semibold text-neutral-200">
+                <TypeWriter
+                  texts={[
+                    "Java Backend Developer",
+                    "Spring Boot Specialist", 
+                    "Software Engineer",
+                    "Full Stack Developer",
+                  ]}
+                  delay={isMobile ? 100 : 80}
+                  deleteDelay={isMobile ? 50 : 30}
+                />
+              </span>
+            </div>
           </div>
 
-          <p className="hero-element text-slate-300 text-lg mb-10 max-w-2xl leading-relaxed">
-            Final-year <span className="text-emerald-400 font-semibold">Software Engineering</span> student at IUH with solid experience in 
-            <span className="text-blue-400 font-semibold"> Java & Spring Boot</span>. Passionate about backend development, 
-            database design, and building <span className="text-violet-400 font-semibold">scalable applications</span>. 
-            Seeking opportunities to apply technical knowledge and contribute to real-world projects.
+          {/* Description */}
+          <p className="hero-element text-neutral-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+            Final-year <span className="text-amber-400 font-medium">Software Engineering</span> student 
+            specializing in <span className="text-amber-400 font-medium">Java & Spring Boot</span>. 
+            Passionate about building scalable, high-performance backend systems.
           </p>
 
-          <div className="hero-element flex flex-wrap gap-6">
+          {/* CTA Buttons */}
+          <div className="hero-element flex flex-wrap justify-center gap-4 pt-4">
             <button
               onClick={() => {
                 const element = document.getElementById("projects");
                 if (element) {
                   const offsetTop = element.offsetTop - 80;
-                  window.scrollTo({
-                    top: offsetTop,
-                    behavior: "smooth",
-                  });
+                  window.scrollTo({ top: offsetTop, behavior: "smooth" });
                 }
               }}
-              className="btn-primary flex items-center gap-3"
+              className="btn-primary flex items-center gap-3 px-8 py-4 text-lg group"
             >
-              View Projects <FaArrowRight className="text-lg" />
+              View My Work
+              <FaArrowRight className="text-lg group-hover:translate-x-1 transition-transform" />
             </button>
 
-            <div className="flex items-center gap-6">
-              <a
-                href="https://github.com/giasinguyen"
-                target="_blank"
-                rel="noreferrer"
-                className={`glass-effect text-slate-300 hover:text-blue-400 transition-all p-4 rounded-xl ${!isMobile ? 'hover:-translate-y-1 transform duration-300 hover:shadow-lg hover:shadow-blue-500/20' : ''}`}
-                aria-label="GitHub"
-              >
-                <FaGithub className="h-7 w-7" />
-              </a>
-              <a
-                href="https://linkedin.com/in/giasinguyen"
-                target="_blank"
-                rel="noreferrer"
-                className={`glass-effect text-slate-300 hover:text-blue-400 transition-all p-4 rounded-xl ${!isMobile ? 'hover:-translate-y-1 transform duration-300 hover:shadow-lg hover:shadow-blue-500/20' : ''}`}
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className="h-7 w-7" />
-              </a>
-            </div>
+            <button
+              onClick={() => {
+                const element = document.getElementById("contact");
+                if (element) {
+                  const offsetTop = element.offsetTop - 80;
+                  window.scrollTo({ top: offsetTop, behavior: "smooth" });
+                }
+              }}
+              className="px-8 py-4 text-lg font-medium text-neutral-200 bg-neutral-800/60 hover:bg-neutral-700/60 border border-neutral-700/50 hover:border-amber-500/30 rounded-xl transition-all duration-300"
+            >
+              Get In Touch
+            </button>
           </div>
 
-          {/* Tech stack tags */}
-          <div className="hero-element mt-16" ref={techStackRef}>
-            <p className="text-slate-400 mb-6 text-lg font-medium">
-              Technologies I work with
+          {/* Social Links */}
+          <div className="hero-element flex justify-center gap-4 pt-2">
+            <a
+              href="https://github.com/giasinguyen"
+              target="_blank"
+              rel="noreferrer"
+              className="p-3 text-neutral-400 hover:text-amber-400 bg-neutral-800/40 hover:bg-neutral-800/80 border border-neutral-700/30 hover:border-amber-500/30 rounded-xl transition-all duration-300"
+              aria-label="GitHub"
+            >
+              <FaGithub className="h-6 w-6" />
+            </a>
+            <a
+              href="https://linkedin.com/in/giasinguyen"
+              target="_blank"
+              rel="noreferrer"
+              className="p-3 text-neutral-400 hover:text-amber-400 bg-neutral-800/40 hover:bg-neutral-800/80 border border-neutral-700/30 hover:border-amber-500/30 rounded-xl transition-all duration-300"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin className="h-6 w-6" />
+            </a>
+          </div>
+
+          {/* Tech Stack */}
+          <div className="hero-element pt-8" ref={techStackRef}>
+            <p className="text-neutral-500 text-sm font-medium mb-4 uppercase tracking-wider">
+              Tech Stack
             </p>
-            <div className="flex flex-wrap gap-4">
-              <span className={`tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-red-400 text-sm rounded-xl border border-red-500/20 hover:border-red-400/40 transition-all duration-300 ${!isMobile ? 'hover:shadow-lg hover:shadow-red-500/10' : ''}`}>
-                <FaJava className="text-lg" /> Java
-              </span>
-
-              <span className={`tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-green-400 text-sm rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all duration-300 ${!isMobile ? 'hover:shadow-lg hover:shadow-green-500/10' : ''}`}>
-                <SiSpring className="text-lg" /> Spring
-              </span>
-
-              <span className={`tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-green-500 text-sm rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all duration-300 ${!isMobile ? 'hover:shadow-lg hover:shadow-green-500/10' : ''}`}>
-                <SiSpringboot className="text-lg" /> Spring Boot
-              </span>
-
-              <span className={`tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-blue-400 text-sm rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 ${!isMobile ? 'hover:shadow-lg hover:shadow-blue-500/10' : ''}`}>
-                <SiReact className="text-lg" /> React
-              </span>
-
-              <span className={`tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-blue-500 text-sm rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 ${!isMobile ? 'hover:shadow-lg hover:shadow-blue-500/10' : ''}`}>
-                <SiTypescript className="text-lg" /> TypeScript
-              </span>
-
-              <span className={`tech-tag flex items-center gap-2 px-4 py-3 glass-effect text-cyan-400 text-sm rounded-xl border border-cyan-500/20 hover:border-cyan-400/40 transition-all duration-300 ${!isMobile ? 'hover:shadow-lg hover:shadow-cyan-500/10' : ''}`}>
-                <SiTailwindcss className="text-lg" /> TailwindCSS
-              </span>
+            <div className="flex flex-wrap justify-center gap-3">
+              {[
+                { icon: FaJava, name: "Java", color: "text-red-400", hoverBorder: "hover:border-red-500/40" },
+                { icon: SiSpring, name: "Spring", color: "text-green-400", hoverBorder: "hover:border-green-500/40" },
+                { icon: SiSpringboot, name: "Spring Boot", color: "text-green-500", hoverBorder: "hover:border-green-500/40" },
+                { icon: SiReact, name: "React", color: "text-cyan-400", hoverBorder: "hover:border-cyan-500/40" },
+                { icon: SiTypescript, name: "TypeScript", color: "text-blue-400", hoverBorder: "hover:border-blue-500/40" },
+                { icon: SiTailwindcss, name: "Tailwind", color: "text-sky-400", hoverBorder: "hover:border-sky-500/40" },
+              ].map((tech, index) => (
+                <span
+                  key={index}
+                  className={`tech-tag flex items-center gap-2 px-4 py-2.5 bg-neutral-800/40 ${tech.color} text-sm font-medium rounded-xl border border-neutral-700/40 ${tech.hoverBorder} transition-all duration-300 ${!isMobile ? 'hover:-translate-y-0.5' : ''}`}
+                >
+                  <tech.icon className="text-lg" /> {tech.name}
+                </span>
+              ))}
             </div>
           </div>
+
         </div>
 
-        {/* Right column - 3D model/image */}
-        <div className="hero-element hidden lg:block relative">
-          {show3D && HeroModel ? (
-            <HeroModel />
-          ) : (
-            <div className="relative w-full h-[500px] flex items-center justify-center">
-              {/* Modern geometric alternative to 3D model */}
-              <div className="relative">
-                {/* Main glowing orb */}
-                <div className={`w-80 h-80 bg-gradient-to-br from-blue-500/30 via-violet-500/20 to-cyan-500/30 rounded-full blur-2xl neon-glow ${!isMobile ? 'animate-pulse-slow' : ''}`}></div>
-                
-                {/* Floating geometric shapes */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative w-64 h-64">
-                    <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-16 border-2 border-blue-400/60 rounded-lg rotate-45 ${!isMobile ? 'animate-bounce-slow' : ''}`}></div>
-                    <div className={`absolute bottom-0 right-0 w-12 h-12 bg-gradient-to-br from-violet-500/40 to-cyan-500/40 rounded-full ${!isMobile ? 'animate-pulse delay-500' : ''}`}></div>
-                    <div className={`absolute top-1/4 left-0 w-8 h-8 border border-cyan-400/60 rotate-12 ${!isMobile ? 'animate-pulse delay-1000' : ''}`}></div>
-                    <div className={`absolute bottom-1/4 left-1/4 w-6 h-16 bg-gradient-to-t from-blue-500/30 to-transparent rounded-full ${!isMobile ? 'animate-bounce-slow delay-700' : ''}`}></div>
-                  </div>
-                </div>
-
-                {/* Orbiting rings - only on desktop */}
-                {!isMobile && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-96 h-96 border border-blue-400/20 rounded-full animate-[spin_15s_linear_infinite]"></div>
-                    <div className="absolute w-80 h-80 border border-violet-400/20 rounded-full animate-[spin_20s_linear_infinite_reverse]"></div>
-                    <div className="absolute w-64 h-64 border border-cyan-400/20 rounded-full animate-[spin_25s_linear_infinite]"></div>
-                  </div>
-                )}
-              </div>
+        {/* Scroll Indicator */}
+        {!isMobile && (
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500">
+            <span className="text-xs uppercase tracking-widest">Scroll</span>
+            <div className="w-5 h-8 border-2 border-neutral-600 rounded-full flex justify-center pt-1.5">
+              <div className="w-1 h-2 bg-amber-500 rounded-full animate-bounce"></div>
             </div>
-          )}
-
-          {/* Background grid pattern */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="w-full h-full bg-gradient-to-br from-transparent via-blue-500/5 to-transparent"></div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

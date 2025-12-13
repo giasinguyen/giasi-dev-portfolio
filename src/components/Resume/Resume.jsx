@@ -129,13 +129,13 @@ function Resume() {
           {/* Header Section */}
           <div className="text-center mb-16">
             <motion.div
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-8"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <FaFilePdf className="w-6 h-6 text-emerald-400" />
-              <span className="text-lg font-semibold text-slate-300">
+              <FaFilePdf className="w-6 h-6 text-amber-400" />
+              <span className="text-lg font-semibold text-neutral-300">
                 Professional Resume
               </span>
             </motion.div>
@@ -150,14 +150,14 @@ function Resume() {
             </motion.h1>
 
             <motion.div 
-              className="w-24 h-1.5 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto mb-8 rounded-full"
+              className="w-24 h-1.5 bg-gradient-to-r from-amber-500 to-amber-600 mx-auto mb-8 rounded-full"
               initial={{ width: 0 }}
               animate={{ width: 96 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             />
 
             <motion.p 
-              className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12"
+              className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -178,29 +178,29 @@ function Resume() {
                 exit={{ opacity: 0, y: 50 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="glass-effect rounded-2xl p-8 border border-slate-700/50">
+                <div className="glass-effect rounded-2xl p-8 border border-neutral-700/50">
                   <div className="flex justify-between items-center mb-6">
                     <div>
-                      <h3 className="text-2xl font-bold text-slate-100">
+                      <h3 className="text-2xl font-bold text-neutral-100">
                         Resume Preview
                       </h3>
-                      <p className="text-slate-400 text-sm mt-1">
+                      <p className="text-neutral-400 text-sm mt-1">
                         NguyenTranGiaSi_Intern_JAVA_Backend.pdf
                       </p>
                     </div>
                     <motion.button
                       onClick={() => setShowPDF(false)}
-                      className="text-slate-400 hover:text-slate-200 text-2xl p-2 hover:bg-slate-700/50 rounded-lg transition-all duration-300"
+                      className="text-neutral-400 hover:text-neutral-200 text-2xl p-2 hover:bg-neutral-700/50 rounded-lg transition-all duration-300"
                       whileHover={{ rotate: 90 }}
                       transition={{ duration: 0.2 }}
                     >
                       ×
                     </motion.button>
                   </div>
-                  <div className="bg-slate-800/50 rounded-xl p-4">
+                  <div className="bg-neutral-800/50 rounded-xl p-4">
                     <iframe
                       src="/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf#toolbar=1&navpanes=1&scrollbar=1&page=1&view=FitH"
-                      className="w-full h-[600px] rounded-lg border border-slate-700/30"
+                      className="w-full h-[600px] rounded-lg border border-neutral-700/30"
                       title="Resume PDF"
                       loading="lazy"
                       onError={() => setPdfError(true)}
@@ -208,8 +208,8 @@ function Resume() {
                     />
                     
                     {/* Fallback for browsers that don't support PDF viewing */}
-                    <div className={`text-center mt-4 p-4 bg-slate-700/30 rounded-lg ${pdfError ? 'bg-red-900/20 border border-red-500/30' : ''}`}>
-                      <p className="text-slate-400 text-sm mb-3">
+                    <div className={`text-center mt-4 p-4 bg-neutral-700/30 rounded-lg ${pdfError ? 'bg-red-900/20 border border-red-500/30' : ''}`}>
+                      <p className="text-neutral-400 text-sm mb-3">
                         {pdfError ? 'PDF failed to load, but you can still access it!' : "Can't see the PDF? No problem!"}
                       </p>
                       <div className="flex gap-4 justify-center">
@@ -217,7 +217,7 @@ function Resume() {
                           href="/documents/NguyenTranGiaSi_Intern_JAVA_Backend.pdf"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm transition-colors duration-300"
+                          className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-neutral-900 font-medium px-4 py-2 rounded-lg text-sm transition-colors duration-300"
                         >
                           <FaEye className="text-sm" />
                           View in Browser
@@ -240,9 +240,9 @@ function Resume() {
           {/* Experience Section */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-6">
-                <FaBriefcase className="w-5 h-5 text-blue-400" />
-                <span className="text-lg font-semibold text-slate-300">
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-6">
+                <FaBriefcase className="w-5 h-5 text-amber-400" />
+                <span className="text-lg font-semibold text-neutral-300">
                   Work Experience
                 </span>
               </div>
@@ -255,7 +255,7 @@ function Resume() {
               {experiences.map((exp, index) => (
                 <motion.div
                   key={index}
-                  className="glass-effect rounded-2xl p-8 border border-slate-700/50"
+                  className="glass-effect rounded-2xl p-8 border border-neutral-700/50"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.2 }}
@@ -267,14 +267,14 @@ function Resume() {
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                     <div>
-                      <h3 className="text-xl font-bold text-slate-100 mb-1">
+                      <h3 className="text-xl font-bold text-neutral-100 mb-1">
                         {exp.title}
                       </h3>
-                      <p className="text-blue-400 font-semibold">
+                      <p className="text-amber-400 font-semibold">
                         {exp.company}
                       </p>
                     </div>
-                    <div className="text-slate-400 text-sm mt-2 md:mt-0 text-right">
+                    <div className="text-neutral-400 text-sm mt-2 md:mt-0 text-right">
                       <p>{exp.period}</p>
                       <p>{exp.location}</p>
                     </div>
@@ -283,9 +283,9 @@ function Resume() {
                     {exp.achievements.map((achievement, i) => (
                       <li
                         key={i}
-                        className="text-slate-300 flex items-start gap-3"
+                        className="text-neutral-300 flex items-start gap-3"
                       >
-                        <span className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></span>
                         {achievement}
                       </li>
                     ))}
@@ -300,9 +300,9 @@ function Resume() {
             {/* Education */}
             <div className="min-h-[600px] flex flex-col">
               <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-4">
-                  <FaGraduationCap className="w-5 h-5 text-emerald-400" />
-                  <span className="text-lg font-semibold text-slate-300">
+                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-4">
+                  <FaGraduationCap className="w-5 h-5 text-amber-400" />
+                  <span className="text-lg font-semibold text-neutral-300">
                     Education
                   </span>
                 </div>
@@ -315,7 +315,7 @@ function Resume() {
                 {education.map((edu, index) => (
                 <motion.div
                   key={index}
-                  className="glass-effect rounded-2xl p-6 border border-slate-700/50"
+                  className="glass-effect rounded-2xl p-6 border border-neutral-700/50"
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
@@ -325,21 +325,21 @@ function Resume() {
                     transition: { duration: 0.2 }
                   }}
                 >
-                  <h3 className="text-lg font-bold text-slate-100 mb-2">
+                  <h3 className="text-lg font-bold text-neutral-100 mb-2">
                     {edu.degree}
                   </h3>
-                  <p className="text-emerald-400 font-semibold mb-1">
+                  <p className="text-amber-400 font-semibold mb-1">
                     {edu.institution}
                   </p>
-                  <div className="flex justify-between items-center text-slate-400 text-sm mb-2">
+                  <div className="flex justify-between items-center text-neutral-400 text-sm mb-2">
                     <span>{edu.period}</span>
                     <span>{edu.location}</span>
                   </div>
-                  <p className="text-slate-300 font-semibold mb-3">
+                  <p className="text-neutral-300 font-semibold mb-3">
                     GPA: {edu.gpa}
                   </p>
                   {edu.details && (
-                    <p className="text-slate-400 text-sm leading-relaxed">
+                    <p className="text-neutral-400 text-sm leading-relaxed">
                       {edu.details}
                     </p>
                   )}
@@ -351,9 +351,9 @@ function Resume() {
             {/* Certifications */}
             <div className="min-h-[600px] flex flex-col">
               <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-4">
-                  <FaCertificate className="w-5 h-5 text-yellow-400" />
-                  <span className="text-lg font-semibold text-slate-300">
+                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-4">
+                  <FaCertificate className="w-5 h-5 text-amber-400" />
+                  <span className="text-lg font-semibold text-neutral-300">
                     Certifications
                   </span>
                 </div>
@@ -367,7 +367,7 @@ function Resume() {
                   {certifications.map((cert, index) => (
                   <motion.div
                     key={index}
-                    className="glass-effect rounded-xl p-6 border border-slate-700/50"
+                    className="glass-effect rounded-xl p-6 border border-neutral-700/50"
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -378,16 +378,16 @@ function Resume() {
                     }}
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <FaAward className="text-yellow-400" />
-                      <h3 className="font-bold text-slate-100">
+                      <FaAward className="text-amber-400" />
+                      <h3 className="font-bold text-neutral-100">
                         {cert.name}
                       </h3>
                     </div>
-                    <p className="text-slate-400 text-sm mb-2">
+                    <p className="text-neutral-400 text-sm mb-2">
                       {cert.issuer} • {cert.year}
                     </p>
                     {cert.details && (
-                      <p className="text-slate-300 text-sm leading-relaxed">
+                      <p className="text-neutral-300 text-sm leading-relaxed">
                         {cert.details}
                       </p>
                     )}
@@ -400,9 +400,9 @@ function Resume() {
             {/* Awards & Scholarships */}
             <div className="min-h-[600px] flex flex-col">
               <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-4">
+                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-4">
                   <FaAward className="w-5 h-5 text-amber-400" />
-                  <span className="text-lg font-semibold text-slate-300">
+                  <span className="text-lg font-semibold text-neutral-300">
                     Awards & Scholarships
                   </span>
                 </div>
@@ -415,7 +415,7 @@ function Resume() {
                 {awards.map((award, index) => (
                   <motion.div
                     key={index}
-                    className="glass-effect rounded-xl p-6 border border-slate-700/50 relative overflow-hidden"
+                    className="glass-effect rounded-xl p-6 border border-neutral-700/50 relative overflow-hidden"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -435,7 +435,7 @@ function Resume() {
                             <FaAward className="text-white text-lg" />
                           </div>
                           <div>
-                            <h3 className="font-bold text-slate-100 text-lg">
+                            <h3 className="font-bold text-neutral-100 text-lg">
                               {award.title}
                             </h3>
                             <p className="text-amber-400 text-sm font-medium">
@@ -443,21 +443,21 @@ function Resume() {
                             </p>
                           </div>
                         </div>
-                        <span className="text-slate-400 text-sm font-medium bg-slate-800/50 px-3 py-1 rounded-full">
+                        <span className="text-neutral-400 text-sm font-medium bg-neutral-800/50 px-3 py-1 rounded-full">
                           {award.year}
                         </span>
                       </div>
                       
                       <div className="mb-3">
-                        <p className="text-slate-300 text-sm mb-1">
+                        <p className="text-neutral-300 text-sm mb-1">
                           <span className="font-medium">Institution:</span> {award.issuer}
                         </p>
-                        <p className="text-emerald-400 text-sm font-medium">
-                          <span className="text-slate-300">Achievement:</span> {award.achievement}
+                        <p className="text-amber-400 text-sm font-medium">
+                          <span className="text-neutral-300">Achievement:</span> {award.achievement}
                         </p>
                       </div>
                       
-                      <p className="text-slate-400 text-sm leading-relaxed">
+                      <p className="text-neutral-400 text-sm leading-relaxed">
                         {award.description}
                       </p>
                     </div>
@@ -469,27 +469,27 @@ function Resume() {
 
           {/* Call to Action */}
           <motion.div
-            className="text-center glass-effect rounded-3xl p-12 border border-slate-700/50"
+            className="text-center glass-effect rounded-3xl p-12 border border-neutral-700/50"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <motion.div
-              className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6"
+              className="w-16 h-16 bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
               initial={{ scale: 0, rotate: -180 }}
               whileInView={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <FaDownload className="text-white text-2xl" />
+              <FaDownload className="text-neutral-900 text-2xl" />
             </motion.div>
 
-            <h3 className="text-3xl font-bold text-slate-100 mb-4">
+            <h3 className="text-3xl font-bold text-neutral-100 mb-4">
               Ready to collaborate?
             </h3>
 
-            <p className="text-slate-400 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-neutral-400 text-lg mb-8 max-w-2xl mx-auto">
               Download my full resume for detailed information about my experience, 
               projects, and technical skills. Let's build something amazing together!
             </p>

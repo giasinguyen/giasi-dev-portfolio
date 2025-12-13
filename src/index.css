@@ -1,11 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --foreground-rgb: 248, 250, 252; /* slate-50 */
-  --background-start-rgb: 15, 23, 42; /* slate-900 */
-  --background-end-rgb: 2, 6, 23; /* slate-950 */
-  --accent-color: 59, 130, 246; /* blue-500 */
-  --secondary-color: 139, 92, 246; /* violet-500 */
+  /* Elegant Dark Theme - Rich Black with Warm Accents */
+  --foreground-rgb: 250, 250, 250; /* Pure white text */
+  --background-start-rgb: 10, 10, 12; /* Rich black */
+  --background-end-rgb: 5, 5, 8; /* Deep black */
+  
+  /* Accent Colors - Warm Gold/Amber tones */
+  --accent-primary: 234, 179, 8; /* amber-500 */
+  --accent-secondary: 251, 191, 36; /* amber-400 */
+  --accent-tertiary: 245, 158, 11; /* amber-500 darker */
+  
+  /* Neutral tones */
+  --neutral-100: 250, 250, 250;
+  --neutral-200: 229, 229, 229;
+  --neutral-300: 163, 163, 163;
+  --neutral-400: 115, 115, 115;
+  --neutral-500: 82, 82, 82;
+  --neutral-600: 64, 64, 64;
+  --neutral-700: 38, 38, 38;
+  --neutral-800: 23, 23, 23;
+  --neutral-900: 14, 14, 14;
 }
 
 html {
@@ -16,9 +31,9 @@ html {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: radial-gradient(ellipse at top, rgb(var(--background-start-rgb)) 0%, rgb(var(--background-end-rgb)) 100%);
+  background: rgb(var(--background-end-rgb));
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
   min-height: 100vh;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
@@ -53,7 +68,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
   opacity: 0.1;
 }
 
@@ -63,11 +78,11 @@ body {
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply text-slate-100;
+    @apply text-neutral-50;
   }
   
   p, span {
-    @apply text-slate-300;
+    @apply text-neutral-300;
   }
 }
 
@@ -77,44 +92,43 @@ body {
   }
 
   .btn-primary {
-    @apply px-8 py-4 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white rounded-xl transition-all shadow-lg hover:shadow-2xl hover:shadow-blue-500/25 duration-300 transform hover:scale-105 font-semibold;
+    @apply px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-neutral-900 rounded-xl transition-all shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 duration-300 transform hover:scale-105 font-semibold;
   }
 
   .btn-outline {
-    @apply px-6 py-3 border-2 border-blue-400/30 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 rounded-xl transition-all duration-300 font-medium backdrop-blur-sm;
+    @apply px-6 py-3 border border-neutral-700 text-neutral-200 hover:bg-neutral-800 hover:border-amber-500/50 hover:text-amber-400 rounded-xl transition-all duration-300 font-medium backdrop-blur-sm;
   }
 
   .card {
-    @apply bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-700/50 hover:border-slate-600/50;
+    @apply bg-neutral-900/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-neutral-800 hover:border-neutral-700;
   }
 
   .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-100 via-blue-200 to-slate-300;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200;
   }
 
   .gradient-text-alt {
-    @apply text-transparent bg-clip-text bg-gradient-to-br from-slate-100 via-slate-400 to-slate-700;
+    @apply text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 via-neutral-300 to-neutral-500;
   }
 
   .text-primary {
-    @apply text-slate-100;
+    @apply text-neutral-50;
   }
 
   .text-secondary {
-    @apply text-slate-300;
+    @apply text-neutral-300;
   }
 
   .text-muted {
-    @apply text-slate-400;
+    @apply text-neutral-500;
   }
 
   .glass-effect {
-    @apply bg-slate-800/30 backdrop-blur-md border border-slate-700/30;
+    @apply bg-neutral-900/60 backdrop-blur-md border border-neutral-800/80;
   }
 
   .neon-glow {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 20px rgba(234, 179, 8, 0.15), 0 0 40px rgba(234, 179, 8, 0.05);
   }
 
   /* Shimmer animation for skeletons */
@@ -169,8 +183,8 @@ body {
   /* Smooth mobile animations */
   @media (prefers-color-scheme: dark) {
     .mobile-menu {
-      background: rgba(15, 23, 42, 0.95);
-      border-color: rgba(51, 65, 85, 0.5);
+      background: rgba(10, 10, 12, 0.98);
+      border-color: rgba(38, 38, 38, 0.8);
     }
   }
 }
@@ -194,7 +208,7 @@ body {
   top: 12px;
   left: 15px;
   filter: blur(4px);
-  background: #3b82f6;
+  background: #eab308;
   border-radius: 50%;
   transform: translateX(0);
   animation: dot 2.8s infinite;
@@ -214,7 +228,7 @@ body {
   height: 16px;
   margin-left: 16px;
   filter: blur(4px);
-  background: #3b82f6;
+  background: #eab308;
   border-radius: 50%;
 }
 

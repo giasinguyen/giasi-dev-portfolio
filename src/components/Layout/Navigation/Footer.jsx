@@ -14,25 +14,25 @@ const Footer = () => {
       name: 'GitHub',
       icon: FaGithub,
       url: 'https://github.com/giasinguyen',
-      color: 'hover:text-gray-400'
+      color: 'hover:text-white'
     },
     {
       name: 'LinkedIn',
       icon: FaLinkedin,
       url: 'https://linkedin.com/in/giasinguyen',
-      color: 'hover:text-blue-400'
+      color: 'hover:text-amber-400'
     },
     {
       name: 'Twitter',
       icon: FaTwitter,
       url: 'https://twitter.com/giasinguyen',
-      color: 'hover:text-sky-400'
+      color: 'hover:text-amber-300'
     },
     {
       name: 'Email',
       icon: FaEnvelope,
       url: 'mailto:giasinguyentran@gmail.com',
-      color: 'hover:text-red-400'
+      color: 'hover:text-amber-500'
     }
   ]
 
@@ -63,12 +63,12 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-gradient-to-br from-gray-950 via-slate-950 to-black text-slate-100 relative overflow-hidden">
+    <footer className="bg-[#0a0a0c] text-neutral-100 relative overflow-hidden">
       {/* Background Effects - darker and more subtle */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/3 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-violet-600/3 rounded-full blur-3xl"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-600/[0.02] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-amber-500/[0.02] rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 relative z-10">
@@ -83,14 +83,14 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-violet-500 rounded-xl flex items-center justify-center font-bold text-white">
+              <div className="w-10 h-10 bg-gradient-to-r from-amber-500 to-amber-600 rounded-xl flex items-center justify-center font-bold text-neutral-900">
                 GS
               </div>
               <h3 className="text-xl font-bold gradient-text">
                 GiaSi Nguyen
               </h3>
             </div>
-            <p className="text-slate-400 leading-relaxed mb-6">
+            <p className="text-neutral-400 leading-relaxed mb-6">
               Full-stack developer passionate about creating innovative web solutions 
               and bringing ideas to life through clean, efficient code.
             </p>
@@ -101,7 +101,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-10 h-10 bg-slate-800/50 border border-slate-700/50 rounded-xl flex items-center justify-center text-slate-400 transition-all duration-300 ${social.color} hover:bg-slate-700/50 hover:scale-110 hover:shadow-lg`}
+                  className={`w-10 h-10 bg-neutral-800/50 border border-neutral-700/50 rounded-xl flex items-center justify-center text-neutral-400 transition-all duration-300 ${social.color} hover:bg-neutral-700/50 hover:scale-110 hover:shadow-lg`}
                   whileHover={{ 
                     rotate: 360,
                     transition: { duration: 0.3 }
@@ -123,7 +123,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold text-slate-100 mb-6">
+            <h4 className="text-lg font-semibold text-neutral-100 mb-6">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -131,11 +131,11 @@ const Footer = () => {
                 <li key={link.name}>
                   <motion.a
                     href={link.href}
-                    className="text-slate-400 hover:text-slate-200 transition-colors duration-300 inline-flex items-center group"
+                    className="text-neutral-400 hover:text-neutral-200 transition-colors duration-300 inline-flex items-center group"
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    <span className="w-2 h-2 bg-amber-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     {link.name}
                   </motion.a>
                 </li>
@@ -151,7 +151,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold text-slate-100 mb-6">
+            <h4 className="text-lg font-semibold text-neutral-100 mb-6">
               Get In Touch
             </h4>
             <ul className="space-y-4">
@@ -161,11 +161,11 @@ const Footer = () => {
                     href={info.href}
                     target={info.href.startsWith('http') ? '_blank' : undefined}
                     rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="flex items-center gap-3 text-slate-400 hover:text-slate-200 transition-colors duration-300 group"
+                    className="flex items-center gap-3 text-neutral-400 hover:text-neutral-200 transition-colors duration-300 group"
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="w-8 h-8 bg-slate-800/50 border border-slate-700/50 rounded-lg flex items-center justify-center group-hover:bg-slate-700/50 transition-colors duration-300">
+                    <div className="w-8 h-8 bg-neutral-800/50 border border-neutral-700/50 rounded-lg flex items-center justify-center group-hover:bg-neutral-700/50 transition-colors duration-300">
                       <info.icon className="text-sm" />
                     </div>
                     <span className="text-sm">{info.text}</span>
@@ -183,10 +183,10 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold text-slate-100 mb-6">
+            <h4 className="text-lg font-semibold text-neutral-100 mb-6">
               Stay Updated
             </h4>
-            <p className="text-slate-400 text-sm mb-4 leading-relaxed">
+            <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
               Subscribe to get notified about new projects and blog posts.
             </p>
             <div className="space-y-3">
@@ -194,17 +194,17 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 bg-slate-800/50 border border-slate-700/50 rounded-l-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500/50 transition-colors duration-300"
+                  className="flex-1 px-4 py-2 bg-neutral-800/50 border border-neutral-700/50 rounded-l-xl text-neutral-100 placeholder-neutral-500 focus:outline-none focus:border-amber-500/50 transition-colors duration-300"
                 />
                 <motion.button
-                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded-r-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+                  className="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-neutral-900 font-medium rounded-r-xl hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Subscribe
                 </motion.button>
               </div>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-neutral-500">
                 No spam, unsubscribe at any time.
               </p>
             </div>
@@ -213,17 +213,17 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <motion.div
-          className="pt-8 border-t border-slate-700/50"
+          className="pt-8 border-t border-neutral-800/80"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-400 text-sm flex items-center gap-2">
+            <p className="text-neutral-400 text-sm flex items-center gap-2">
               © {currentYear} GiaSi Nguyen. Made with 
               <motion.span
-                className="text-red-400"
+                className="text-amber-500"
                 animate={{ 
                   scale: [1, 1.2, 1],
                   rotate: [0, 5, -5, 0]
@@ -244,7 +244,7 @@ const Footer = () => {
 
       {/* Scroll to top button */}
       <motion.button
-        className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded-full shadow-lg shadow-blue-500/25 flex items-center justify-center z-50 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300"
+        className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-amber-500 to-amber-600 text-neutral-900 rounded-full shadow-lg shadow-amber-500/20 flex items-center justify-center z-50 hover:shadow-xl hover:shadow-amber-500/30 transition-all duration-300"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}

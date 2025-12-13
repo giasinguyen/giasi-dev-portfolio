@@ -55,8 +55,8 @@ function App() {
   const FastFallback = ({ message = 'Loading...' }) => (
     <div className="py-4 flex items-center justify-center min-h-[30vh]">
       <div className="text-center">
-        <div className="w-4 h-4 border border-slate-600 border-t-blue-400 rounded-full animate-spin mx-auto mb-1"></div>
-        <p className="text-slate-500 text-xs">{message}</p>
+        <div className="w-4 h-4 border border-neutral-700 border-t-amber-500 rounded-full animate-spin mx-auto mb-1"></div>
+        <p className="text-neutral-500 text-xs">{message}</p>
       </div>
     </div>
   );
@@ -65,27 +65,27 @@ function App() {
     <ErrorBoundary fallbackMessage="Something went wrong. Please refresh the page.">
       <Router>
         <div className="App min-h-screen relative">
-          {/* Global Background */}
-          <div className="fixed inset-0 bg-gradient-to-br from-gray-950 via-slate-950 to-black">
-            {/* Seamless Background decoration */}
+          {/* Global Background - Rich Dark Theme */}
+          <div className="fixed inset-0 bg-[#0a0a0c]">
+            {/* Elegant Background decoration */}
             <div className="absolute inset-0 w-full h-full">
-              {/* Primary gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-purple-950/20 to-gray-950/40"></div>
+              {/* Subtle radial gradient for depth */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(234,179,8,0.08),transparent)]"></div>
               
-              {/* Animated blur circles - darker and more subtle */}
-              <div className="absolute top-0 -left-20 w-96 h-96 bg-gradient-to-br from-blue-600/8 to-cyan-600/5 rounded-full blur-3xl animate-pulse-slow"></div>
-              <div className="absolute -top-20 right-0 w-80 h-80 bg-gradient-to-br from-purple-600/6 to-pink-600/4 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
-              <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-br from-emerald-600/4 to-teal-600/3 rounded-full blur-3xl animate-pulse-slow delay-2000"></div>
-              <div className="absolute -bottom-20 -right-20 w-88 h-88 bg-gradient-to-br from-violet-600/5 to-indigo-600/4 rounded-full blur-3xl animate-pulse-slow delay-3000"></div>
-              <div className="absolute top-1/2 -left-10 w-64 h-64 bg-gradient-to-br from-teal-600/3 to-blue-600/2 rounded-full blur-3xl animate-pulse-slow delay-4000"></div>
+              {/* Subtle ambient light - warm tones */}
+              <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-amber-500/[0.02] rounded-full blur-[120px]"></div>
+              <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-amber-600/[0.015] rounded-full blur-[100px]"></div>
               
-              {/* Subtle texture overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/3 to-transparent"></div>
+              {/* Very subtle grid pattern */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
+              
+              {/* Noise texture for premium feel */}
+              <div className="absolute inset-0 opacity-[0.015]" style={{backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")"}}></div>
             </div>
           </div>
 
           {/* Content with relative positioning */}
-          <div className="relative z-10 text-slate-100">{loading ? (
+          <div className="relative z-10 text-neutral-100">{loading ? (
             isMobile ? <MobilePreloader /> : <Preloader />
           ) : (
             <>

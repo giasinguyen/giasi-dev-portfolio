@@ -46,9 +46,9 @@ function TechStack() {
       id: 2,
       title: "Frontend Development",
       icon: FaRocket,
-      color: "text-blue-400",
-      bgColor: "bg-blue-500/10",
-      borderColor: "border-blue-500/20",
+      color: "text-amber-400",
+      bgColor: "bg-amber-500/10",
+      borderColor: "border-amber-500/20",
       technologies: [
         { name: "React.js", icon: SiReact, level: "Advanced", color: "#61DAFB" },
         { name: "TailwindCSS", icon: SiTailwindcss, level: "Expert", color: "#06B6D4" },
@@ -102,9 +102,9 @@ function TechStack() {
       id: 6,
       title: "AI & Automation",
       icon: FaBrain,
-      color: "text-violet-400",
-      bgColor: "bg-violet-500/10", 
-      borderColor: "border-violet-500/20",
+      color: "text-amber-300",
+      bgColor: "bg-amber-500/10", 
+      borderColor: "border-amber-500/20",
       technologies: [
         { name: "ChatGPT", icon: FaBrain, level: "Advanced", color: "#10A37F" },
         { name: "Claude AI", icon: FaBrain, level: "Proficient", color: "#CC785C" }
@@ -139,11 +139,11 @@ function TechStack() {
 
   const getLevelColor = (level) => {
     switch (level) {
-      case 'Expert': return 'text-emerald-400'
-      case 'Advanced': return 'text-blue-400'
+      case 'Expert': return 'text-amber-400'
+      case 'Advanced': return 'text-amber-300'
       case 'Intermediate': return 'text-yellow-400'
-      case 'Proficient': return 'text-purple-400'
-      default: return 'text-slate-400'
+      case 'Proficient': return 'text-amber-500'
+      default: return 'text-neutral-400'
     }
   }
 
@@ -155,13 +155,13 @@ function TechStack() {
           {/* Header Section */}
           <div className="text-center mb-16">
             <motion.div
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-slate-700/50 mb-8"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-effect border border-neutral-700/50 mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <FaCode className="w-6 h-6 text-blue-400" />
-              <span className="text-lg font-semibold text-slate-300">
+              <FaCode className="w-6 h-6 text-amber-400" />
+              <span className="text-lg font-semibold text-neutral-300">
                 Technology Stack
               </span>
             </motion.div>
@@ -176,7 +176,7 @@ function TechStack() {
             </motion.h1>
 
             <motion.p 
-              className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -207,7 +207,7 @@ function TechStack() {
                     <div className={`w-12 h-12 ${category.bgColor} rounded-xl flex items-center justify-center`}>
                       <IconComponent className={`w-6 h-6 ${category.color}`} />
                     </div>
-                    <h3 className="text-lg font-bold text-slate-100">
+                    <h3 className="text-lg font-bold text-neutral-100">
                       {category.title}
                     </h3>
                   </div>
@@ -218,14 +218,14 @@ function TechStack() {
                       return (
                         <motion.div
                           key={techIndex}
-                          className="flex items-center justify-between p-3 bg-slate-800/30 rounded-lg border border-slate-700/30"
+                          className="flex items-center justify-between p-3 bg-neutral-800/30 rounded-lg border border-neutral-700/30"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.3 + techIndex * 0.1 }}
                           viewport={{ once: true }}
                           whileHover={{ 
                             x: 5,
-                            backgroundColor: "rgba(51, 65, 85, 0.4)"
+                            backgroundColor: "rgba(38, 38, 38, 0.5)"
                           }}
                         >
                           <div className="flex items-center gap-3">
@@ -233,7 +233,7 @@ function TechStack() {
                               className="w-5 h-5" 
                               style={{ color: tech.color }}
                             />
-                            <span className="font-medium text-slate-200">
+                            <span className="font-medium text-neutral-200">
                               {tech.name}
                             </span>
                           </div>
@@ -262,7 +262,7 @@ function TechStack() {
                 Tech Stack in Action
               </motion.h2>
               <motion.p 
-                className="text-slate-400 max-w-2xl mx-auto"
+                className="text-neutral-400 max-w-2xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
@@ -276,7 +276,7 @@ function TechStack() {
               {projectHighlights.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  className="glass-effect rounded-2xl p-6 border border-slate-700/50"
+                  className="glass-effect rounded-2xl p-6 border border-neutral-700/50"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -286,22 +286,22 @@ function TechStack() {
                     transition: { duration: 0.2 }
                   }}
                 >
-                  <h3 className="text-xl font-bold text-slate-100 mb-3">
+                  <h3 className="text-xl font-bold text-neutral-100 mb-3">
                     {project.name}
                   </h3>
-                  <p className="text-slate-400 mb-4 leading-relaxed">
+                  <p className="text-neutral-400 mb-4 leading-relaxed">
                     {project.description}
                   </p>
                   
                   <div className="mb-4">
-                    <p className="text-emerald-400 font-medium text-sm mb-2">
+                    <p className="text-amber-400 font-medium text-sm mb-2">
                       Key Technologies:
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {project.techUsed.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-xs font-medium border border-slate-600/50"
+                          className="px-3 py-1 bg-neutral-700/50 text-neutral-300 rounded-full text-xs font-medium border border-neutral-600/50"
                         >
                           {tech}
                         </span>
@@ -309,8 +309,8 @@ function TechStack() {
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-700/50">
-                    <p className="text-blue-400 font-medium text-sm">
+                  <div className="pt-4 border-t border-neutral-700/50">
+                    <p className="text-amber-400 font-medium text-sm">
                       💡 {project.highlight}
                     </p>
                   </div>
@@ -321,27 +321,27 @@ function TechStack() {
 
           {/* Call to Action */}
           <motion.div
-            className="text-center glass-effect rounded-3xl p-12 border border-slate-700/50"
+            className="text-center glass-effect rounded-3xl p-12 border border-neutral-700/50"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <motion.div
-              className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6"
+              className="w-16 h-16 bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
               initial={{ scale: 0, rotate: -180 }}
               whileInView={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <FaRocket className="text-white text-2xl" />
+              <FaRocket className="text-neutral-900 text-2xl" />
             </motion.div>
 
-            <h3 className="text-3xl font-bold text-slate-100 mb-4">
+            <h3 className="text-3xl font-bold text-neutral-100 mb-4">
               Let's Build Something Amazing
             </h3>
 
-            <p className="text-slate-400 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-neutral-400 text-lg mb-8 max-w-2xl mx-auto">
               Ready to leverage these technologies for your next project? 
               Let's discuss how we can create innovative solutions together.
             </p>
