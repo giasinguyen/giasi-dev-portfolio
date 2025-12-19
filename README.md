@@ -1,315 +1,432 @@
 <div align="center">
 
-<img src="public/logo.png" alt="GiaSi Portfolio Logo" width="120" height="120">
+<!-- Logo & Title -->
+<img src="public/logo.png" alt="GiaSi Portfolio Logo" width="140" height="140" style="border-radius: 20px;" />
 
-# ✨ GiaSi Dev Portfolio
+# 🚀 GiaSi Developer Portfolio
 
-### A Modern, Performance-Optimized Personal Portfolio
+<h3>
+  <em>A Modern, Interactive & Performance-Optimized Personal Portfolio</em>
+</h3>
 
-[![React](https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-6-646cff?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-4-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-bb4f9d?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+<!-- Badges -->
+<p>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" /></a>
+  <a href="https://vitejs.dev/"><img src="https://img.shields.io/badge/Vite-6.3-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" /></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind-4.1-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS" /></a>
+  <a href="https://www.framer.com/motion/"><img src="https://img.shields.io/badge/Framer_Motion-12.9-FF0080?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" /></a>
+</p>
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Now-brightgreen?style=for-the-badge)](https://nguyentrangiasi.id.vn)
-[![GitHub](https://img.shields.io/github/stars/giasinguyen/giasi-dev-portfolio?style=for-the-badge&logo=github)](https://github.com/giasinguyen/giasi-dev-portfolio)
+<p>
+  <img src="https://img.shields.io/github/stars/giasinguyen/GiaSi-Portfolio?style=social" alt="Stars" />
+  <img src="https://img.shields.io/github/forks/giasinguyen/GiaSi-Portfolio?style=social" alt="Forks" />
+  <img src="https://img.shields.io/github/license/giasinguyen/GiaSi-Portfolio?color=blue" alt="License" />
+  <img src="https://img.shields.io/github/last-commit/giasinguyen/GiaSi-Portfolio?color=green" alt="Last Commit" />
+</p>
+
+<!-- Quick Links -->
+<p>
+  <a href="https://nguyentrangiasi.id.vn"><strong>🌐 Live Demo</strong></a>
+  &nbsp;•&nbsp;
+  <a href="#-features"><strong>✨ Features</strong></a>
+  &nbsp;•&nbsp;
+  <a href="#-tech-stack"><strong>🛠️ Tech Stack</strong></a>
+  &nbsp;•&nbsp;
+  <a href="#-getting-started"><strong>🚀 Get Started</strong></a>
+</p>
+
+<!-- Preview Image -->
+<br />
+<img src="public/portfolio.PNG" alt="Portfolio Preview" width="90%" style="border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);" />
+
+</div>
+
+<br />
 
 ---
 
-</div>
+## 📋 Table of Contents
 
-<div align="center">
-<img src="public/portfolio.PNG" alt="Portfolio Preview" width="100%" style="border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-</div>
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Screenshots](#-screenshots)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Available Scripts](#-available-scripts)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Contact](#-contact)
 
-## 🚀 Overview
+---
 
-A cutting-edge personal portfolio website showcasing modern web development practices. Built with React 19, featuring stunning animations, responsive design, and optimized performance for all devices.
+## 🎯 Overview
 
-## ✨ Key Features
+Welcome to my **Personal Developer Portfolio** — a meticulously crafted website that showcases my journey, skills, and projects as a **Full Stack Developer**. This portfolio is more than just a resume; it's an interactive experience built with cutting-edge web technologies.
 
 <table>
-<tr>
-<td width="50%">
-
-### 🎨 **Design & UX**
-- 🌙 **Dark Theme** with glass morphism effects
-- 📱 **Fully Responsive** - Mobile-first approach
-- ✨ **Smooth Animations** with Framer Motion
-- 🎭 **Interactive Elements** and micro-interactions
-- 🎨 **Modern UI/UX** with clean aesthetics
-
-</td>
-<td width="50%">
-
-### ⚡ **Performance & Tech**
-- ⚡ **Lightning Fast** with Vite 6
-- 🏗️ **Component Architecture** with React 19
-- 📦 **Optimized Bundle** size
-- 🔍 **SEO Ready** with meta tags
-- 📊 **Performance Monitoring** built-in
-
-</td>
-</tr>
+  <tr>
+    <td>⚡</td>
+    <td><strong>Lightning Fast</strong></td>
+    <td>Powered by Vite 6 with optimized bundle splitting and lazy loading</td>
+  </tr>
+  <tr>
+    <td>📱</td>
+    <td><strong>Fully Responsive</strong></td>
+    <td>Pixel-perfect design from mobile devices to ultra-wide screens</td>
+  </tr>
+  <tr>
+    <td>🎨</td>
+    <td><strong>Stunning Animations</strong></td>
+    <td>Smooth transitions with Framer Motion & GSAP</td>
+  </tr>
+  <tr>
+    <td>🌙</td>
+    <td><strong>Dark/Light Mode</strong></td>
+    <td>System-aware theme with seamless switching</td>
+  </tr>
+  <tr>
+    <td>♿</td>
+    <td><strong>Accessible</strong></td>
+    <td>WCAG compliant with keyboard navigation support</td>
+  </tr>
 </table>
 
-## �️ Tech Stack
+---
+
+## ✨ Features
 
 <div align="center">
 
-| Frontend | Build & Tools | Styling | Animation | Deployment |
-|:--------:|:-------------:|:-------:|:---------:|:----------:|
-| ![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=white) | ![Vite](https://img.shields.io/badge/Vite-6-646cff?logo=vite&logoColor=white) | ![TailwindCSS](https://img.shields.io/badge/Tailwind-4-06b6d4?logo=tailwindcss&logoColor=white) | ![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-bb4f9d?logo=framer&logoColor=white) | ![Vercel](https://img.shields.io/badge/Vercel-black?logo=vercel&logoColor=white) |
-| ![React Router](https://img.shields.io/badge/React_Router-7-ca4245?logo=reactrouter&logoColor=white) | ![ESLint](https://img.shields.io/badge/ESLint-8-4b32c3?logo=eslint&logoColor=white) | ![CSS3](https://img.shields.io/badge/CSS3-Modules-1572b6?logo=css3&logoColor=white) | ![React Icons](https://img.shields.io/badge/React_Icons-4-61dafb?logo=react&logoColor=white) | ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088ff?logo=githubactions&logoColor=white) |
+### 🎨 **Design & User Experience**
 
 </div>
 
-## 🎯 Project Highlights
+| Feature | Description |
+|---------|-------------|
+| 🌌 **3D Particle System** | Interactive particle backgrounds that respond to mouse movements |
+| 🔷 **Geometric Animations** | CSS-powered floating shapes with smooth parallax effects |
+| 🖱️ **Custom Cursor** | Unique cursor that transforms on hover states |
+| 🎭 **Page Transitions** | Cinematic transitions between routes using Framer Motion |
+| 🌓 **Theme Switching** | Smooth dark/light mode with persistent localStorage |
+| ✨ **Micro-interactions** | Delightful hover effects and button animations |
+
+<div align="center">
+
+### ⚙️ **Functional Components**
+
+</div>
+
+| Component | Description |
+|-----------|-------------|
+| 📄 **PDF Resume Viewer** | View resume directly in-browser with zoom & download options |
+| 📊 **GitHub Calendar** | Real-time contribution graph integration |
+| 📬 **Contact Form** | EmailJS/Formspree powered form with validation |
+| 🏷️ **Project Filtering** | Dynamic category-based project showcase |
+| ⌨️ **Typewriter Effect** | Engaging animated text on hero section |
+| 📱 **Mobile Navigation** | Slide-out menu with gesture support |
+
+<div align="center">
+
+### 🚀 **Performance & SEO**
+
+</div>
+
+| Feature | Description |
+|---------|-------------|
+| ⚡ **Code Splitting** | Automatic chunk optimization with Vite |
+| 🖼️ **Lazy Loading** | Images and components load on-demand |
+| 🔍 **SEO Optimized** | Meta tags, Open Graph, and structured data |
+| 📊 **Performance Monitor** | Built-in performance tracking utilities |
+| 🗜️ **Optimized Assets** | Compressed images and minified code |
+
+---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+### Core Technologies
+
+<p>
+  <img src="https://skillicons.dev/icons?i=react,vite,tailwind,javascript" alt="Core" />
+</p>
+
+### Animation & UI
+
+<p>
+  <img src="https://skillicons.dev/icons?i=css,html" alt="Animation" />
+  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer" />
+  <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" alt="GSAP" />
+</p>
+
+### Tools & Deployment
+
+<p>
+  <img src="https://skillicons.dev/icons?i=git,github,vercel,vscode" alt="Tools" />
+</p>
+
+</div>
+
+<br />
 
 <details>
-<summary>🏠 <strong>Home Section</strong></summary>
+<summary>📦 <strong>Full Dependencies List</strong></summary>
 
-- Hero animation with CSS-based geometric shapes
-- Typewriter effect for dynamic text
-- Particle background system
-- Responsive design optimization
+<br />
+
+| Package | Version | Description |
+|---------|---------|-------------|
+| `react` | ^19.0.0 | UI Library |
+| `react-dom` | ^19.0.0 | React DOM renderer |
+| `react-router-dom` | ^7.7.0 | Client-side routing |
+| `framer-motion` | ^12.9.2 | Animation library |
+| `gsap` | ^3.12.7 | Advanced animations |
+| `tailwindcss` | ^4.1.8 | Utility-first CSS |
+| `zustand` | ^5.0.3 | State management |
+| `react-hook-form` | ^7.56.1 | Form handling |
+| `react-pdf` | ^9.2.1 | PDF viewer |
+| `react-github-calendar` | ^4.5.6 | GitHub contributions |
+| `lucide-react` | ^0.525.0 | Icon library |
+| `react-icons` | ^5.5.0 | Additional icons |
+| `sonner` | ^2.0.3 | Toast notifications |
+| `emailjs-com` | ^3.2.0 | Email service |
 
 </details>
 
-<details>
-<summary>👨‍💻 <strong>About Section</strong></summary>
+---
 
-- Personal introduction with avatar
-- Skills showcase with interactive elements
-- GitHub contributions calendar integration
-- Professional experience timeline
+## 📸 Screenshots
 
-</details>
+<div align="center">
 
-<details>
-<summary>🎨 <strong>Projects Showcase</strong></summary>
+### 🏠 Home Page
+<img src="public/screenshots/home.png" alt="Home Page" width="80%" style="border-radius: 8px; margin: 10px 0;" />
 
-- Dynamic project filtering system
-- Modern card layouts with hover effects
-- Technology stack badges
-- Live demo and GitHub links
-- Alternating animations on scroll
+### 👨‍💻 About Section
+<img src="public/screenshots/about.png" alt="About Section" width="80%" style="border-radius: 8px; margin: 10px 0;" />
 
-</details>
+### 🎨 Projects Gallery
+<img src="public/screenshots/projects.png" alt="Projects" width="80%" style="border-radius: 8px; margin: 10px 0;" />
 
-<details>
-<summary>📝 <strong>Blog System</strong></summary>
+### 📱 Mobile Responsive
+<img src="public/screenshots/mobile.png" alt="Mobile View" width="40%" style="border-radius: 8px; margin: 10px 0;" />
 
-- Complete blog with search functionality
-- Category filtering and tags
-- Bookmark system for articles
-- Modern card design with read time
-- SEO optimized blog posts
+</div>
 
-</details>
+---
 
-<details>
-<summary>📄 <strong>Resume Viewer</strong></summary>
+## 📁 Project Structure
 
-- Interactive PDF resume viewer
-- Download functionality
-- Structured experience data
-- Skills and education sections
-- Professional timeline
-
-</details>
-
-<details>
-<summary>📞 <strong>Contact Form</strong></summary>
-
-- Professional contact form
-- Form validation and error handling
-- Glass morphism design
-- Toast notifications
-- Social media integration
-
-</details>
-
-## 🚀 Quick Start
-
-<details>
-<summary>📋 <strong>Prerequisites</strong></summary>
-
-Make sure you have the following installed:
-- Node.js (v18 or higher)
-- npm or yarn package manager
-- Git for version control
-
-</details>
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/giasinguyen/giasi-dev-portfolio.git
-cd giasi-dev-portfolio
+```
+📦 GiaSi-Portfolio
+├── 📂 public/
+│   ├── 📄 manifest.json        # PWA manifest
+│   ├── 📄 sw.js                # Service worker
+│   └── 📂 documents/           # PDF files
+│
+├── 📂 src/
+│   ├── 📂 components/
+│   │   ├── 📂 About/           # About section
+│   │   │   ├── About.jsx
+│   │   │   └── GitHubContributions.jsx
+│   │   │
+│   │   ├── 📂 Contact/         # Contact form
+│   │   │   └── Contact.jsx
+│   │   │
+│   │   ├── 📂 Home/            # Landing page
+│   │   │   ├── Home.jsx
+│   │   │   ├── HeroModel.jsx
+│   │   │   ├── MobileHome.jsx
+│   │   │   └── TypeWriter.jsx
+│   │   │
+│   │   ├── 📂 Layout/          # Layout components
+│   │   │   ├── 📂 Background/  # Visual effects
+│   │   │   ├── 📂 Mobile/      # Mobile-specific
+│   │   │   ├── 📂 Navigation/  # Navbar & Footer
+│   │   │   ├── 📂 Utilities/   # Helpers
+│   │   │   └── 📂 Viewers/     # PDF viewers
+│   │   │
+│   │   ├── 📂 Projects/        # Project showcase
+│   │   ├── 📂 Resume/          # Resume viewer
+│   │   ├── 📂 TechStack/       # Skills display
+│   │   └── 📂 UI/              # Reusable UI
+│   │
+│   ├── 📂 context/             # React contexts
+│   ├── 📂 data/                # Static data (JSON)
+│   ├── 📂 hooks/               # Custom hooks
+│   ├── 📂 utils/               # Utility functions
+│   │
+│   ├── 📄 App.jsx              # Root component
+│   ├── 📄 App.css              # Global styles
+│   ├── 📄 main.jsx             # Entry point
+│   └── 📄 index.css            # Base styles
+│
+├── 📄 index.html               # HTML template
+├── 📄 vite.config.js           # Vite configuration
+├── 📄 tailwind.config.js       # Tailwind configuration
+├── 📄 eslint.config.js         # ESLint rules
+├── 📄 vercel.json              # Vercel deployment
+└── 📄 package.json             # Dependencies
 ```
 
-### 2️⃣ Install Dependencies
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Node.js** `v18.0.0` or higher
+- **npm** `v9.0.0` or higher (or **yarn** / **pnpm**)
+
+### Installation
+
+1️⃣ **Clone the repository**
+
+```bash
+git clone https://github.com/giasinguyen/GiaSi-Portfolio.git
+```
+
+2️⃣ **Navigate to project directory**
+
+```bash
+cd GiaSi-Portfolio
+```
+
+3️⃣ **Install dependencies**
 
 ```bash
 npm install
 # or
 yarn install
+# or
+pnpm install
 ```
 
-### 3️⃣ Start Development Server
+4️⃣ **Start development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-### 4️⃣ Build for Production
-
-```bash
-npm run build
-# or
-yarn build
-```
-
-## 📁 Project Structure
-
-<details>
-<summary>🗂️ <strong>View Project Architecture</strong></summary>
+5️⃣ **Open in browser**
 
 ```
-📦 giasi-dev-portfolio/
-├── 📁 public/                         # Static assets
-│   ├── 📄 documents/                  # Resume and documents
-│   ├── 🖼️ avatar.jpg                  # Profile image
-│   ├── 🖼️ logo.png                    # Brand logo
-│   └── 🖼️ portfolio.PNG               # Preview image
-├── 📁 src/
-│   ├── 📁 components/                 # React components
-│   │   ├── 📁 About/                  # About section
-│   │   ├── 📁 Blog/                   # Blog system
-│   │   ├── 📁 Contact/                # Contact form
-│   │   ├── 📁 Home/                   # Landing page
-│   │   ├── 📁 Layout/                 # Layout components
-│   │   │   ├── 📁 Navigation/         # Navbar & Footer
-│   │   │   ├── 📁 Background/         # Visual effects
-│   │   │   ├── 📁 Utilities/          # Utility components
-│   │   │   ├── 📁 Viewers/            # PDF viewers
-│   │   │   └── 📁 Mobile/             # Mobile components
-│   │   ├── 📁 Projects/               # Portfolio showcase
-│   │   ├── 📁 Resume/                 # Resume section
-│   │   ├── 📁 SEO/                    # SEO components
-│   │   └── 📁 UI/                     # Reusable UI
-│   ├── 📁 context/                    # React context
-│   ├── 📁 data/                       # Static data
-│   ├── 📁 hooks/                      # Custom hooks
-│   ├── 📁 utils/                      # Utility functions
-│   ├── 📄 App.jsx                     # Main app component
-│   └── 📄 main.jsx                    # Entry point
-├── 📄 package.json                    # Dependencies
-├── 📄 tailwind.config.js              # Tailwind config
-├── 📄 vite.config.js                  # Vite configuration
-└── 📄 vercel.json                     # Deployment config
+http://localhost:5173
 ```
 
-</details>
+---
 
-## 🎨 Customization Guide
+## 📜 Available Scripts
 
-<details>
-<summary>⚙️ <strong>How to Customize</strong></summary>
+| Script | Command | Description |
+|--------|---------|-------------|
+| 🔧 **Dev** | `npm run dev` | Start development server with HMR |
+| 🏗️ **Build** | `npm run build` | Create production build |
+| 👁️ **Preview** | `npm run preview` | Preview production build locally |
+| 🔍 **Lint** | `npm run lint` | Run ESLint and auto-fix issues |
+| 🧹 **Clean** | `npm run clean` | Remove dist and cache folders |
+| 📦 **Build Prod** | `npm run build:prod` | Clean + Production build |
 
-### 🎭 Personal Information
+---
 
-Edit these files to add your information:
+## 🌐 Deployment
 
-```javascript
-// src/data/projects.json - Your projects
-// src/data/blogPosts.json - Your blog posts
-// src/components/About/About.jsx - Personal info
-// public/documents/ - Add your resume PDF
-```
+This portfolio is configured for seamless deployment on **Vercel**:
 
-### 🎨 Theme & Colors
-
-Customize the theme in `tailwind.config.js`:
-
-```javascript
-theme: {
-  extend: {
-    colors: {
-      primary: '#3b82f6',
-      secondary: '#8b5cf6',
-      // Add your custom colors
-    }
-  }
-}
-```
-
-### 📱 Contact Information
-
-Update contact details in:
-- `src/components/Contact/Contact.jsx`
-- `src/components/Layout/Navigation/Footer.jsx`
-
-</details>
-
-## 🚀 Deployment
-
-<details>
-<summary>☁️ <strong>Deployment Options</strong></summary>
-
-### Vercel (Recommended)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/giasinguyen/giasi-dev-portfolio)
-
-### Netlify
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/giasinguyen/giasi-dev-portfolio)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/giasinguyen/GiaSi-Portfolio)
 
 ### Manual Deployment
 
 ```bash
-# Build the project
+# Build for production
 npm run build
 
-# Deploy the dist/ folder to your hosting provider
+# Preview build locally
+npm run preview
 ```
 
-</details>
-
-## 📊 Performance Metrics
-
-<div align="center">
-
-| Metric | Score | Status |
-|:------:|:-----:|:------:|
-| Performance | 95+ | ✅ Excellent |
-| Accessibility | 100 | ✅ Perfect |
-| Best Practices | 100 | ✅ Perfect |
-| SEO | 100 | ✅ Perfect |
-
-</div>
-
-## 🤝 Contributing
-
-<details>
-<summary>🛠️ <strong>How to Contribute</strong></summary>
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📞 Contact
-
-- **Portfolio**: [https://nguyentrangiasi.id.vn/](https://nguyentrangiasi.id.vn)
-- **GitHub**: [https://github.com/giasinguyen](https://github.com/giasinguyen)
-- **Email**: giasinguyentran@gmail.com
-- **LinkedIn**: [https://www.linkedin.com/in/giasinguyen/](https://www.linkedin.com/in/giasinguyen)
+The `dist/` folder contains the production-ready files.
 
 ---
 
-Built with ❤️ by GiaSi Nguyen using modern web technologies
+## 🤝 Contributing
+
+Contributions make the open-source community amazing! Any contributions are **greatly appreciated**.
+
+1. **Fork** the Project
+2. **Create** your Feature Branch
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. **Commit** your Changes
+   ```bash
+   git commit -m '✨ Add some AmazingFeature'
+   ```
+4. **Push** to the Branch
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. **Open** a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License
+
+Copyright (c) 2025 Gia Si Nguyen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software...
+```
+
+---
+
+## 📞 Contact
+
+<div align="center">
+
+### **Gia Si Nguyen** — Full Stack Developer
+
+<p>
+  <a href="https://github.com/giasinguyen">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+  <a href="https://linkedin.com/in/giasinguyen">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="mailto:nguyentrangiasi@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+  <a href="https://nguyentrangiasi.id.vn">
+    <img src="https://img.shields.io/badge/Website-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website" />
+  </a>
+</p>
+
+<br />
+
+**🌟 If you found this project helpful, please give it a star!**
+
+<a href="https://github.com/giasinguyen/GiaSi-Portfolio/stargazers">
+  <img src="https://img.shields.io/github/stars/giasinguyen/GiaSi-Portfolio?style=social" alt="Stars" />
+</a>
+
+</div>
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ and ☕ by <a href="https://github.com/giasinguyen">Gia Si Nguyen</a></sub>
+  <br />
+  <sub>© 2025 All Rights Reserved</sub>
+</div>
