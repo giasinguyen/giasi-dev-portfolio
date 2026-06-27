@@ -428,5 +428,5 @@ copies of the Software...
 <div align="center">
   <sub>Built with ❤️ and ☕ by <a href="https://github.com/giasinguyen">Gia Si Nguyen</a></sub>
   <br />
-  <sub>© 2025 All Rights Reserved</sub>
+  <sub>© 2026 All Rights Reserved</sub>
 </div>
